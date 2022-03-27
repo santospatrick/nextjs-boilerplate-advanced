@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] Typescript
 - [x] Chakra UI
 - [x] Next SEO
-- [ ] React Table
+- [x] React Table
 - [ ] React Query
 
 ## Getting Started
