@@ -3,7 +3,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 - [x] Next.js
 - [x] Typescript
-- [ ] Chakra UI
+- [x] Chakra UI
+- [x] Next SEO
 - [ ] React Table
 - [ ] React Query
 
