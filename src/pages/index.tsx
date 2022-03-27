@@ -1,4 +1,5 @@
 import { Container } from '@chakra-ui/react'
+import HomeTable from '@/components/tables/HomeTable'
 
 function Index() {
   return (
@@ -7,6 +8,7 @@ function Index() {
       does it bring benefits to the design team, but it also brings benefits to
       engineering teams. It makes sure that our experiences have a consistent look
       and feel, not just in our design specs, but in production
+      <HomeTable />
     </Container>
   )
 }
