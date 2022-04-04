@@ -1,14 +1,14 @@
-import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
-import { useTable, useSortBy, Column } from 'react-table'
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { useTable, useSortBy, Column } from "react-table";
 
 type Props = {
-  columns: Array<Column>
-  data: Array<any>
-}
+  columns: Array<Column>;
+  data: Array<any>;
+};
 
 function DataTable({ columns, data }: Props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy)
+    useTable({ columns, data }, useSortBy);
 
   return (
     <Table {...getTableProps()}>
@@ -49,7 +49,7 @@ function DataTable({ columns, data }: Props) {
         })}
       </Tbody>
     </Table>
-  )
+  );
 }
 
-export default DataTable
+export default DataTable;

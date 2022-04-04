@@ -1,11 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Features
+- [ ] Data table with inline editing
+- [ ] 
+
+## Technologies
 - [x] Next.js
 - [x] Typescript
 - [x] Chakra UI
 - [x] Next SEO
 - [x] React Table
+- [x] Eslint/Prettier
 - [ ] React Query
 - [ ] React Hook Form
 - [ ] Code Generator
