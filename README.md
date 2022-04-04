@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Features
 - [ ] Data table with inline editing
-- [ ] 
+- [ ] Server side rendering
+- [ ] Forms with mask, validation and compatible with Chakra-UI 
+- [ ] Modal with fullscreen option
+- [ ] Authentication screens pre-built
+- [ ] Profile page for user editing
+- [ ] Form builder
+- [ ] Collapsable & nested menu
+- [ ] Advanced filter for data tables
 
 ## Technologies
 - [x] Next.js
@@ -11,9 +18,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] Next SEO
 - [x] React Table
 - [x] Eslint/Prettier
+- [ ] React Toastify
 - [ ] React Query
 - [ ] React Hook Form
 - [ ] Code Generator
+- [ ] Git hooks
 
 ## Getting Started
 
