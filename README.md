@@ -10,6 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [ ] Form builder
 - [ ] Collapsable & nested menu
 - [ ] Advanced filter for data tables
+- [ ] Email templates for authentication flow
 
 ## Technologies
 - [x] Next.js
@@ -23,6 +24,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [ ] React Hook Form
 - [ ] Code Generator
 - [ ] Git hooks
+- [ ] Mjml
 
 ## Getting Started
 
