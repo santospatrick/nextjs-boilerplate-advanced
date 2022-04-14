@@ -15,6 +15,7 @@
     "@emotion/styled": "^11",
     "@hookform/resolvers": "^2.8.8",
     "framer-motion": "^6",
+    "js-brasil": "^2.5.3",
     "next": "12.1.1",
     "next-seo": "^5.2.0",
     "react": "17.0.2",
@@ -22,7 +23,8 @@
     "react-hook-form": "^7.29.0",
     "react-input-mask": "^2.0.4",
     "react-table": "^7.7.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "yup-locale-pt": "^0.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

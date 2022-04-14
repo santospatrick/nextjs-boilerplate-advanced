@@ -1,8 +1,16 @@
-import * as yup from "yup";
+import { setupYup } from "@/config/yup";
+import { validateBr } from "js-brasil";
 
-const schema = yup.object({
-  email: yup.string().email().required(),
-  cpf: yup.string().required(),
+const Yup = setupYup();
+
+const schema = Yup.object({
+  email: Yup.string().email().required(),
+  cpf: Yup.string()
+    .required()
+    .test("cpf", "CPF inválido", function (value) {
+      if (!value) return;
+      return validateBr.cpf(value);
+    }),
 });
 
 export default schema;
