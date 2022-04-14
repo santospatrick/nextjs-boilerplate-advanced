@@ -19,7 +19,17 @@ type Props = {
 } & InputProps &
   Partial<InputMaskProps>;
 
-function InputText({ label, name, control, helperText, mask, ...rest }: Props) {
+function InputText({
+  label,
+  name,
+  control,
+  helperText,
+  mask,
+  maskPlaceholder,
+  alwaysShowMask,
+  beforeMaskedStateChange,
+  ...rest
+}: Props) {
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { invalid, error },
@@ -39,6 +49,9 @@ function InputText({ label, name, control, helperText, mask, ...rest }: Props) {
             onChange(event.target.value.replace(/[^\d]/g, ""));
           }}
           onBlur={onBlur}
+          maskPlaceholder={maskPlaceholder}
+          alwaysShowMask={alwaysShowMask}
+          beforeMaskedStateChange={beforeMaskedStateChange}
         >
           {() => <Input ref={ref} isInvalid={invalid} {...rest} />}
         </InputMask>
