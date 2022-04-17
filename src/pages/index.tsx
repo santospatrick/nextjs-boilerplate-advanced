@@ -5,8 +5,7 @@ import { SubmitHandler } from "react-hook-form";
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Index() {
-  const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    console.log("🚀 ~ file: index.tsx ~ line 8 ~ Index ~ values", values);
+  const onSubmit: SubmitHandler<FormValues> = async () => {
     await sleep(1000);
   };
 
