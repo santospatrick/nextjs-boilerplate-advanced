@@ -3,7 +3,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 - [ ] Data table with inline editing
 - [ ] Server side rendering
-- [ ] Forms with mask, validation and compatible with Chakra-UI 
+- [ ] Forms (compatible with `react-hook-form`)
+  - [ ] Text Input (masked/normalized)
+  - [ ] Date Input
+  - [ ] Upload Input
+  - [ ] Autocomplete/Select Input
+  - [ ] Number Input
+  - [ ] Textarea Input
+  - [ ] Schema validation with `yup`
 - [ ] Modal with fullscreen option
 - [ ] Authentication screens pre-built
 - [ ] Profile page for user editing
