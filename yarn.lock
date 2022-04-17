@@ -1117,6 +1117,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@^2.9.2":
+  version "2.11.5"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
+  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
+
 "@popperjs/core@^2.9.3":
   version "2.11.4"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.4.tgz#d8c7b8db9226d2d7664553a0741ad7d0397ee503"
@@ -1458,6 +1463,11 @@ ast-types-flow@^0.0.7:
   resolved "https://registry.yarnpkg.com/ast-types-flow/-/ast-types-flow-0.0.7.tgz#f70b735c6bca1a5c9c22d982c3e39e7feba3bdad"
   integrity sha1-9wtzXGvKGlycItmCw+Oef+ujva0=
 
+attr-accept@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
+  integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
+
 axe-core@^4.3.5:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.1.tgz#7dbdc25989298f9ad006645cd396782443757413"
@@ -1559,6 +1569,11 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+classnames@^2.2.6:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -1653,6 +1668,11 @@ damerau-levenshtein@^1.0.7:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
+
+date-fns@^2.24.0, date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 debug@^2.6.9:
   version "2.6.9"
@@ -2065,6 +2085,13 @@ file-entry-cache@^6.0.1:
   integrity sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==
   dependencies:
     flat-cache "^3.0.4"
+
+file-selector@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.4.0.tgz#59ec4f27aa5baf0841e9c6385c8386bef4d18b17"
+  integrity sha512-iACCiXeMYOvZqlF1kTiYINzgepRBymz1wwjiuup9u9nayhb6g4fSwiyJ/6adli+EPwrWtpgQAh2PoS7HukEGEg==
+  dependencies:
+    tslib "^2.0.3"
 
 fill-range@^7.0.1:
   version "7.0.1"
@@ -2877,6 +2904,18 @@ react-clientside-effect@^1.2.5:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
+react-datepicker@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.7.0.tgz#75e03b0a6718b97b84287933307faf2ed5f03cf4"
+  integrity sha512-FS8KgbwqpxmJBv/bUdA42MYqYZa+fEYcpc746DZiHvVE2nhjrW/dg7c5B5fIUuI8gZET6FOzuDgezNcj568Czw==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    classnames "^2.2.6"
+    date-fns "^2.24.0"
+    prop-types "^15.7.2"
+    react-onclickoutside "^6.12.0"
+    react-popper "^2.2.5"
+
 react-dom@17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
@@ -2886,7 +2925,16 @@ react-dom@17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-fast-compare@3.2.0:
+react-dropzone@^12.0.5:
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-12.0.5.tgz#f9b557484a8afd6267f670f96a770ddd3948838b"
+  integrity sha512-zUjZigD0VJ91CSm9T1h7ErxFReBLaa9sjS2dUL0+inb0RROZpSJTNDHPY1rrBES5V2NXhF8v0kghmaHc81BMFg==
+  dependencies:
+    attr-accept "^2.2.2"
+    file-selector "^0.4.0"
+    prop-types "^15.8.1"
+
+react-fast-compare@3.2.0, react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
@@ -2908,6 +2956,11 @@ react-hook-form@^7.29.0:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.29.0.tgz#5e7e41a483b70731720966ed8be52163ea1fecf1"
   integrity sha512-NcJqWRF6el5HMW30fqZRt27s+lorvlCCDbTpAyHoodQeYWXgQCvZJJQLC1kRMKdrJknVH0NIg3At6TUzlZJFOQ==
 
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
+
 react-input-mask@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-input-mask/-/react-input-mask-2.0.4.tgz#9ade5cf8196f4a856dbf010820fe75a795f3eb14"
@@ -2920,6 +2973,19 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-onclickoutside@^6.12.0:
+  version "6.12.1"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.12.1.tgz#92dddd28f55e483a1838c5c2930e051168c1e96b"
+  integrity sha512-a5Q7CkWznBRUWPmocCvE8b6lEYw1s6+opp/60dCunhO+G6E4tDTO2Sd2jKE+leEnnrLAE2Wj5DlDHNqj5wPv1Q==
+
+react-popper@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.5.tgz#1214ef3cec86330a171671a4fbcbeeb65ee58e96"
+  integrity sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw==
+  dependencies:
+    react-fast-compare "^3.0.1"
+    warning "^4.0.2"
 
 react-remove-scroll-bar@^2.1.0:
   version "2.2.0"
