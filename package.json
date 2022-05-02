@@ -28,6 +28,7 @@
     "react-hook-form": "^7.29.0",
     "react-icons": "^4.3.1",
     "react-input-mask": "^2.0.4",
+    "react-numeral": "^1.1.1",
     "react-table": "^7.7.0",
     "yup": "^0.32.11",
     "yup-locale-pt": "^0.0.9"

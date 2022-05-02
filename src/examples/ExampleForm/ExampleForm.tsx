@@ -4,11 +4,13 @@ import InputText from "@/components/forms/InputText";
 import schema from "./schema";
 import { Button, Stack } from "@chakra-ui/react";
 import InputDate from "@/components/forms/InputDate";
+import InputUpload from "@/components/forms/InputUpload";
 
 export type FormValues = {
   email: string;
   cpf: string;
   initialDate: Date | string;
+  documents: File[];
 };
 
 type Props = {
@@ -26,6 +28,7 @@ function ExampleForm({ onSubmit }: Props) {
       email: "",
       cpf: "",
       initialDate: undefined,
+      documents: [],
     },
   });
 
@@ -40,6 +43,7 @@ function ExampleForm({ onSubmit }: Props) {
           control={control}
         />
         <InputDate name="initialDate" label="Initial Date" control={control} />
+        <InputUpload name="documents" label="Documents" control={control} />
       </Stack>
       <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Submit
