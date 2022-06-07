@@ -11,7 +11,7 @@ const schema = Yup.object({
       if (!value) return;
       return validateBr.cpf(value);
     }),
-  initialDate: Yup.date().required(),
+  birthdate: Yup.date().required(),
 });
 
 export default schema;

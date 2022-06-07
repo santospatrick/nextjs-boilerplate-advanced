@@ -9,7 +9,7 @@ import InputUpload from "@/components/forms/InputUpload";
 export type FormValues = {
   email: string;
   cpf: string;
-  initialDate: Date | string;
+  birthdate: Date | string;
   documents: File[];
 };
 
@@ -27,7 +27,7 @@ function ExampleForm({ onSubmit }: Props) {
     defaultValues: {
       email: "",
       cpf: "",
-      initialDate: undefined,
+      birthdate: undefined,
       documents: [],
     },
   });
@@ -42,7 +42,7 @@ function ExampleForm({ onSubmit }: Props) {
           name="cpf"
           control={control}
         />
-        <InputDate name="birthday" label="Birthday" control={control} />
+        <InputDate name="birthdate" label="Birthdate" control={control} />
         <InputUpload name="documents" label="Documents" control={control} />
       </Stack>
       <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">

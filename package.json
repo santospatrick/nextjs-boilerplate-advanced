@@ -30,6 +30,7 @@
     "react-input-mask": "^2.0.4",
     "react-numeral": "^1.1.1",
     "react-table": "^7.7.0",
+    "react-toastify": "^9.0.3",
     "yup": "^0.32.11",
     "yup-locale-pt": "^0.0.9"
   },
