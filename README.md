@@ -3,7 +3,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 - [ ] Data table with inline editing
 - [ ] Server side rendering
-- [ ] Forms with mask, validation and compatible with Chakra-UI 
+- [x] Forms (compatible with `react-hook-form`)
+  - [x] Text Input (masked/normalized)
+  - [x] Date Input
+  - [x] Upload Input
+  - [ ] Autocomplete/Select Input
+  - [ ] Number Input
+  - [ ] Textarea Input
+  - [ ] Schema validation with `yup`
 - [ ] Modal with fullscreen option
 - [ ] Authentication screens pre-built
 - [ ] Profile page for user editing
@@ -19,9 +26,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] Next SEO
 - [x] React Table
 - [x] Eslint/Prettier
-- [ ] React Toastify
-- [ ] React Query
-- [ ] React Hook Form
+- [x] React Toastify
+- [x] React Query
+- [x] React Hook Form
 - [ ] Code Generator
 - [ ] Git hooks
 - [ ] Mjml
