@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React from "react";
-import { useDropzone } from "react-dropzone";
+import { DropzoneOptions, useDropzone } from "react-dropzone";
 import { Control, useController } from "react-hook-form";
 import Numeral from "react-numeral";
 import { MdCheckCircle } from "react-icons/md";
@@ -20,9 +20,9 @@ type Props = {
   name: string;
   control: Control<any>;
   helperText?: string;
-};
+} & Partial<DropzoneOptions>;
 
-function InputUpload({ label, name, control, helperText }: Props) {
+function InputUpload({ label, name, control, helperText, ...rest }: Props) {
   const {
     field: { onChange, value, ref },
     fieldState: { invalid, error },
@@ -36,6 +36,7 @@ function InputUpload({ label, name, control, helperText }: Props) {
       onDrop: (acceptedFiles) => {
         onChange(acceptedFiles);
       },
+      ...rest,
     });
 
   const files = value.map((file: File) => (

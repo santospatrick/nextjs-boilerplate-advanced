@@ -27,7 +27,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] React Table
 - [x] Eslint/Prettier
 - [x] React Toastify
-- [ ] React Query
+- [x] React Query
 - [x] React Hook Form
 - [ ] Code Generator
 - [ ] Git hooks
