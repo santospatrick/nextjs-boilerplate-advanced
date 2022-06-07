@@ -42,7 +42,7 @@ function ExampleForm({ onSubmit }: Props) {
           name="cpf"
           control={control}
         />
-        <InputDate name="initialDate" label="Initial Date" control={control} />
+        <InputDate name="birthday" label="Birthday" control={control} />
         <InputUpload name="documents" label="Documents" control={control} />
       </Stack>
       <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">

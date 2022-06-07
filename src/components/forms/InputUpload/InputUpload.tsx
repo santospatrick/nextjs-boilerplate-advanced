@@ -34,13 +34,7 @@ function InputUpload({ label, name, control, helperText }: Props) {
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
       onDrop: (acceptedFiles) => {
-        onChange(
-          acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            })
-          )
-        );
+        onChange(acceptedFiles);
       },
     });
 

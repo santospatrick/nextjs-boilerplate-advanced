@@ -3,10 +3,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 - [ ] Data table with inline editing
 - [ ] Server side rendering
-- [ ] Forms (compatible with `react-hook-form`)
-  - [ ] Text Input (masked/normalized)
-  - [ ] Date Input
-  - [ ] Upload Input
+- [x] Forms (compatible with `react-hook-form`)
+  - [x] Text Input (masked/normalized)
+  - [x] Date Input
+  - [x] Upload Input
   - [ ] Autocomplete/Select Input
   - [ ] Number Input
   - [ ] Textarea Input
@@ -28,7 +28,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] Eslint/Prettier
 - [ ] React Toastify
 - [ ] React Query
-- [ ] React Hook Form
+- [x] React Hook Form
 - [ ] Code Generator
 - [ ] Git hooks
 - [ ] Mjml

@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import ExampleForm, { FormValues } from "@/examples/ExampleForm";
 import { SubmitHandler } from "react-hook-form";
 
@@ -10,8 +10,10 @@ function Index() {
   };
 
   return (
-    <Container maxW="container.xl">
-      <ExampleForm onSubmit={onSubmit} />
+    <Container maxW="container.sm">
+      <Box py={10}>
+        <ExampleForm onSubmit={onSubmit} />
+      </Box>
     </Container>
   );
 }

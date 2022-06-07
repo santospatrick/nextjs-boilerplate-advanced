@@ -53,7 +53,8 @@ function InputText({
           alwaysShowMask={alwaysShowMask}
           beforeMaskedStateChange={beforeMaskedStateChange}
         >
-          {() => <Input ref={ref} isInvalid={invalid} {...rest} />}
+          {/* type="tel" to open number-only keyboard on mobile */}
+          {() => <Input ref={ref} isInvalid={invalid} type="tel" {...rest} />}
         </InputMask>
       ) : (
         <Input

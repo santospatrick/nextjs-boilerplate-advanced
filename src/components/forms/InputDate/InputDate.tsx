@@ -4,20 +4,35 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  InputProps,
 } from "@chakra-ui/react";
 import React, { forwardRef } from "react";
 import DatePicker, { ReactDatePickerProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Control, useController } from "react-hook-form";
+import InputMask, { Props as InputMaskProps } from "react-input-mask";
 
 type Props = {
   label: string;
   name: string;
   control: Control<any>;
   helperText?: string;
-} & Partial<ReactDatePickerProps>;
+  dateProps?: Partial<ReactDatePickerProps>;
+} & InputProps &
+  Partial<InputMaskProps>;
 
-function InputDate({ label, name, control, helperText, ...rest }: Props) {
+function InputDate({
+  label,
+  name,
+  control,
+  helperText,
+  dateProps = {},
+  mask = "99/99/9999",
+  maskPlaceholder,
+  alwaysShowMask,
+  beforeMaskedStateChange,
+  ...rest
+}: Props) {
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { invalid, error },
@@ -32,13 +47,15 @@ function InputDate({ label, name, control, helperText, ...rest }: Props) {
         <FormControl isInvalid={invalid}>
           <FormLabel htmlFor={name}>{label}</FormLabel>
           {/* type="tel" to open number-only keyboard on mobile */}
-          <Input
-            isInvalid={invalid}
-            id={name}
-            type="tel"
-            ref={ref}
+          <InputMask
+            mask={mask}
+            maskPlaceholder={maskPlaceholder}
+            alwaysShowMask={alwaysShowMask}
+            beforeMaskedStateChange={beforeMaskedStateChange}
             {...props}
-          />
+          >
+            {() => <Input ref={ref} isInvalid={invalid} type="tel" {...rest} />}
+          </InputMask>
           {invalid ? (
             <FormErrorMessage>{error?.message}</FormErrorMessage>
           ) : (
@@ -63,7 +80,8 @@ function InputDate({ label, name, control, helperText, ...rest }: Props) {
           onChange(undefined);
         }
       }}
-      {...rest}
+      dateFormat="dd/MM/yyyy"
+      {...dateProps}
     />
   );
 }
