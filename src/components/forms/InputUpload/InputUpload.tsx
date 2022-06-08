@@ -24,7 +24,7 @@ type Props = {
 
 function InputUpload({ label, name, control, helperText, ...rest }: Props) {
   const {
-    field: { onChange, value, ref },
+    field: { onChange, value = [], ref },
     fieldState: { invalid, error },
   } = useController({
     name,

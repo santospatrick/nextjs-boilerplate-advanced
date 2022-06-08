@@ -2,10 +2,17 @@ import { Box, Container } from "@chakra-ui/react";
 import ExampleForm, { FormValues } from "@/examples/ExampleForm";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useFetch } from "@/hooks/useFetch";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Index() {
+  const { data } = useFetch<{
+    name: string;
+    email: string;
+    birthdate: string;
+  }>("profile");
+
   const onSubmit: SubmitHandler<FormValues> = async (_values) => {
     await sleep(1000);
     toast.success(
@@ -16,7 +23,7 @@ function Index() {
   return (
     <Container maxW="container.sm">
       <Box py={10}>
-        <ExampleForm onSubmit={onSubmit} />
+        <ExampleForm onSubmit={onSubmit} initialData={data} />
       </Box>
     </Container>
   );

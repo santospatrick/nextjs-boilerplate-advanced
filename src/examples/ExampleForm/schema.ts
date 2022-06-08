@@ -4,6 +4,7 @@ import { validateBr } from "js-brasil";
 const Yup = setupYup();
 
 const schema = Yup.object({
+  name: Yup.string().required(),
   email: Yup.string().email().required(),
   cpf: Yup.string()
     .required()
