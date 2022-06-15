@@ -1,5 +1,5 @@
 import InputText from "@/components/forms/InputText";
-import { Button, Stack } from "@chakra-ui/react";
+import { Button, Link, Stack } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import schema from "./schema";
@@ -37,12 +37,18 @@ function LoginForm({ onSubmit }: Props) {
           control={control}
         />
       </Stack>
+      <Stack align={"end"}>
+        <Link href="/forgetPassword" colorScheme={"twitter"}>
+          Forgot your password?
+        </Link>
+      </Stack>
       <Stack align={"center"}>
         <Button
           mt={2}
-          colorScheme="teal"
+          colorScheme="twitter"
           isLoading={isSubmitting}
           type="submit"
+          isFullWidth={true}
         >
           Submit
         </Button>

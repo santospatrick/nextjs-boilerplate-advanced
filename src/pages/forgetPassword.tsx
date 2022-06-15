@@ -2,7 +2,16 @@ import ForgetPasswordForm, {
   FormValues,
 } from "@/components/forms/ForgetPasswordForm";
 import api from "@/services/api";
-import { Box, Container, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  Flex,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -10,11 +19,19 @@ import { toast } from "react-toastify";
 function ForgetPassword() {
   const [sent, setSent] = useState(false);
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    setSent(true);
-    await api.post("/auth/reset-password", {
-      email: values.email,
-    });
-    toast.success("E-mail sent successfully.");
+    try {
+      await api.post("/auth/reset-password", {
+        email: values.email,
+      });
+      setSent(true);
+      toast.success("E-mail sent successfully.");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something wrong happened. Try again later.");
+      }
+    }
   };
 
   if (sent) {
@@ -29,6 +46,9 @@ function ForgetPassword() {
   return (
     <Container maxW="container.sm">
       <Box py={10}>
+        <Center>
+          <Heading size="md">Forget my password</Heading>
+        </Center>
         <ForgetPasswordForm onSubmit={onSubmit} />
       </Box>
     </Container>

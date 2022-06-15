@@ -2,7 +2,7 @@ import UpdatePasswordForm, {
   FormValues,
 } from "@/components/forms/UpdatePasswordForm";
 import api from "@/services/api";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Center, Container, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -18,7 +18,6 @@ function UpdatePassword() {
 
       toast.success("Password updated successfully!");
     } catch (error) {
-      // check if the error was thrown from axios
       if (axios.isAxiosError(error)) {
         toast.error(error.message);
       } else {
@@ -30,6 +29,9 @@ function UpdatePassword() {
   return (
     <Container maxW="container.sm">
       <Box py={10}>
+        <Center>
+          <Heading size="md">New password</Heading>
+        </Center>
         <UpdatePasswordForm onSubmit={onSubmit} />
       </Box>
     </Container>

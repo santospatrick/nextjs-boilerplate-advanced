@@ -1,6 +1,6 @@
 import LoginForm, { FormValues } from "@/components/forms/LoginForm";
 import api from "@/services/api";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Image } from "@chakra-ui/react";
 import axios from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -13,7 +13,6 @@ function Login() {
         password: values.password,
       });
     } catch (error) {
-      // check if the error was thrown from axios
       if (axios.isAxiosError(error)) {
         toast.error(error.message);
       } else {
@@ -25,6 +24,12 @@ function Login() {
   return (
     <Container maxW="container.sm">
       <Box py={10}>
+        <Image
+          src="images/inovando.svg"
+          alt="Inovando"
+          margin={"0 auto"}
+          boxSize="15rem"
+        />
         <LoginForm onSubmit={onSubmit} />
       </Box>
     </Container>
