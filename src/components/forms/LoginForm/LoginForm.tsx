@@ -37,9 +37,16 @@ function LoginForm({ onSubmit }: Props) {
           control={control}
         />
       </Stack>
-      <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">
-        Submit
-      </Button>
+      <Stack align={"center"}>
+        <Button
+          mt={2}
+          colorScheme="teal"
+          isLoading={isSubmitting}
+          type="submit"
+        >
+          Submit
+        </Button>
+      </Stack>
     </form>
   );
 }
