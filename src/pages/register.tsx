@@ -1,12 +1,16 @@
 import RegisterForm from "@/components/forms/RegisterForm";
-import { FormValues } from "@/components/forms/RegisterForm/RegisterForm";
-import api from "@/services/api";
+import {
+  FormValues,
+  RegisterFormRefType,
+} from "@/components/forms/RegisterForm/RegisterForm";
+import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
-import axios from "axios";
+import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
 
 function Register() {
+  const ref = useRef<RegisterFormRefType>(null);
+
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     try {
       await api.post("/auth/register", {
@@ -14,12 +18,8 @@ function Register() {
         email: values.email,
         password: values.password,
       });
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something wrong happened. Try again later.");
-      }
+    } catch (error: unknown) {
+      httpErrorHandler(error, ref.current?.setError);
     }
   };
 
@@ -29,7 +29,7 @@ function Register() {
         <Center>
           <Heading size="md">New account</Heading>
         </Center>
-        <RegisterForm onSubmit={onSubmit} />
+        <RegisterForm ref={ref} onSubmit={onSubmit} />
       </Box>
     </Container>
   );
