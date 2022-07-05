@@ -5,10 +5,13 @@ import {
 } from "@/components/forms/RegisterForm/RegisterForm";
 import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
+import { toast } from "react-toastify";
 
 function Register() {
+  const router = useRouter();
   const ref = useRef<RegisterFormRefType>(null);
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
@@ -17,7 +20,10 @@ function Register() {
         username: values.username,
         email: values.email,
         password: values.password,
+        profile_id: 2,
       });
+      toast.success("Account created succesfully!");
+      router.push("/login");
     } catch (error: unknown) {
       httpErrorHandler(error, ref.current?.setError);
     }

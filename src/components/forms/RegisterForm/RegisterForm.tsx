@@ -13,6 +13,7 @@ export type FormValues = {
   username: string;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 type Props = {
@@ -38,6 +39,7 @@ const RegisterForm: ForwardRefRenderFunction<RegisterFormRefType, Props> = (
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -59,6 +61,12 @@ const RegisterForm: ForwardRefRenderFunction<RegisterFormRefType, Props> = (
           type="password"
           label="Password"
           name="password"
+          control={control}
+        />
+        <InputText
+          type="password"
+          label="Confirm password"
+          name="confirmPassword"
           control={control}
         />
       </Stack>
