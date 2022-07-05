@@ -9,12 +9,6 @@ import {
   Grid,
   GridItem,
   Image,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Stack,
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
@@ -42,23 +36,10 @@ function Login() {
     defaultValues,
   });
 
-  const [fieldName, setFieldName] = useState(false);
-  const [formFieldName, setFormFieldName] = useState({});
   const [fieldEmail, setFieldEmail] = useState(false);
   const [fieldCpf, setFieldCpf] = useState(false);
   const [fieldDate, setFieldDate] = useState(false);
   const [fieldUpload, setFieldUpload] = useState(false);
-
-  const addFormFieldName = async () => {
-    setFormFieldName({
-      formValues: [formFieldName, { name: "" }],
-    });
-  };
-
-  const removeFormFields: i = async () => {
-    formFieldName.splice(i, 1);
-    this.setFormFieldName({ formFieldName });
-  };
 
   return (
     <Container maxW="container.sm">
@@ -78,15 +59,6 @@ function Login() {
         gap="1"
       >
         <GridItem pl="2" area={"nav"}>
-          <Box>
-            <NumberInput step={1} defaultValue={0} min={0} max={5}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper onClick={() => addFormFieldName()} />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </Box>
           <Box>
             <Checkbox value="email" onChange={() => setFieldEmail(!fieldEmail)}>
               E-mail
@@ -109,9 +81,6 @@ function Login() {
           </Box>
         </GridItem>
         <GridItem pl="2" area={"main"}>
-          {fieldName && (
-            <InputText label="Name" name="name" control={control} />
-          )}
           {fieldEmail && (
             <InputText
               type="email"

@@ -1,13 +1,16 @@
 import UpdatePasswordForm, {
   FormValues,
 } from "@/components/forms/UpdatePasswordForm";
-import api from "@/services/api";
+import { UpdatePasswordFormRefType } from "@/components/forms/UpdatePasswordForm/UpdatePasswordForm";
+import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
-import axios from "axios";
+import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
 function UpdatePassword() {
+  const ref = useRef<UpdatePasswordFormRefType>(null);
+
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     const token = await api.get(`/auth/get-token?${values.email}`);
     try {
@@ -17,12 +20,8 @@ function UpdatePassword() {
       });
 
       toast.success("Password updated successfully!");
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something wrong happened. Try again later.");
-      }
+    } catch (error: unknown) {
+      httpErrorHandler(error, ref.current?.setError);
     }
   };
 
@@ -32,7 +31,7 @@ function UpdatePassword() {
         <Center>
           <Heading size="md">New password</Heading>
         </Center>
-        <UpdatePasswordForm onSubmit={onSubmit} />
+        <UpdatePasswordForm ref={ref} onSubmit={onSubmit} />
       </Box>
     </Container>
   );

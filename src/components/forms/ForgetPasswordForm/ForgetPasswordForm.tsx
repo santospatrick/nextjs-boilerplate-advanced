@@ -1,28 +1,45 @@
 import InputText from "@/components/forms/InputText";
 import { Button, Stack } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useImperativeHandle,
+} from "react";
+import { SubmitHandler, useForm, UseFormSetError } from "react-hook-form";
 import schema from "./schema";
 
 export type FormValues = {
   email: string;
 };
 
+export type ForgetPasswordFormRefType = {
+  setError: UseFormSetError<FormValues>;
+};
+
 type Props = {
   onSubmit: SubmitHandler<FormValues>;
 };
 
-function ForgetPasswordForm({ onSubmit }: Props) {
+const ForgetPasswordForm: ForwardRefRenderFunction<
+  ForgetPasswordFormRefType,
+  Props
+> = ({ onSubmit }, ref) => {
   const {
     handleSubmit,
     control,
     formState: { isSubmitting },
+    setError,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
     },
   });
+
+  useImperativeHandle(ref, () => ({
+    setError,
+  }));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -40,6 +57,6 @@ function ForgetPasswordForm({ onSubmit }: Props) {
       </Button>
     </form>
   );
-}
+};
 
-export default ForgetPasswordForm;
+export default forwardRef(ForgetPasswordForm);
