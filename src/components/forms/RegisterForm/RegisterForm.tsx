@@ -8,6 +8,7 @@ export type FormValues = {
   username: string;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 type Props = {
@@ -25,6 +26,7 @@ function RegisterForm({ onSubmit }: Props) {
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -42,6 +44,12 @@ function RegisterForm({ onSubmit }: Props) {
           type="password"
           label="Password"
           name="password"
+          control={control}
+        />
+        <InputText
+          type="password"
+          label="Confirm password"
+          name="confirmPassword"
           control={control}
         />
       </Stack>

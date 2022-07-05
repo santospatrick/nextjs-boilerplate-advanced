@@ -27,7 +27,7 @@ function ForgetPassword() {
       toast.success("E-mail sent successfully.");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        toast.error(error.message);
+        toast.error("Something wrong happened. Try again later.");
       } else {
         toast.error("Something wrong happened. Try again later.");
       }

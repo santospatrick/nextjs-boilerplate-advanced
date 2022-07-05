@@ -13,10 +13,12 @@ function Register() {
         username: values.username,
         email: values.email,
         password: values.password,
+        profile_id: 2,
       });
+      location.assign("/login");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        toast.error(error.message);
+        toast.error("Something wrong happened. Try again later.");
       } else {
         toast.error("Something wrong happened. Try again later.");
       }
