@@ -16,7 +16,7 @@ type Props = {
   name: string;
   control: Control<any>;
   helperText?: string;
-  loadOptions: (inputValue: string, callback: any) => Promise<void>;
+  loadOptions: (inputValue: string, callback: any) => void;
   labelAttribute: string;
   valueAttribute?: string;
 } & ReactSelectProps;
@@ -39,7 +39,7 @@ function InputAutocomplete({
     control,
   });
 
-  const loadOptionsDebounced = debounce(loadOptions, 300);
+  const loadOptionsDebounced = debounce(loadOptions, 250);
 
   return (
     <FormControl isInvalid={invalid}>
@@ -51,7 +51,6 @@ function InputAutocomplete({
         onBlur={onBlur}
         placeholder=""
         ref={ref}
-        // @ts-expect-error: the library definition is wrong
         loadOptions={loadOptionsDebounced}
         getOptionValue={(option) => get(option, valueAttribute)}
         getOptionLabel={(option) => get(option, labelAttribute)}

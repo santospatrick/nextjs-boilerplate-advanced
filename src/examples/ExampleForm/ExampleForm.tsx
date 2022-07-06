@@ -54,13 +54,24 @@ function ExampleForm({ onSubmit, initialData }: Props) {
     });
   }, [reset, initialData]);
 
-  const loadOptions = async (_inputValue: string, callback: any) => {
-    await sleep(1000);
+  const loadOptions = (_inputValue: string, callback: any) => {
+    // Example:
+    // api
+    //   .get("user", {
+    //     params: {
+    //       username: inputValue,
+    //     },
+    //   })
+    //   .then(({ data }) => {
+    //     callback(data.data);
+    //   });
 
-    callback([
-      { id: 1, username: "Test" },
-      { id: 2, username: "Another user" },
-    ]);
+    sleep(500).then(() => {
+      callback([
+        { id: 1, username: "Test" },
+        { id: 2, username: "Another" },
+      ]);
+    });
   };
 
   return (
