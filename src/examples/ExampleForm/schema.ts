@@ -13,6 +13,7 @@ const schema = Yup.object({
       return validateBr.cpf(value);
     }),
   birthdate: Yup.date().required(),
+  profile_id: Yup.number().required(),
 });
 
 export default schema;

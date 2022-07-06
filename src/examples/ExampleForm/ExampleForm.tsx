@@ -7,6 +7,7 @@ import InputDate from "@/components/forms/InputDate";
 import InputUpload from "@/components/forms/InputUpload";
 import { useEffect } from "react";
 import { parseISO } from "date-fns";
+import InputSelect from "@/components/forms/InputSelect";
 
 export type FormValues = {
   name: string;
@@ -63,6 +64,16 @@ function ExampleForm({ onSubmit, initialData }: Props) {
         />
         <InputDate name="birthdate" label="Birthdate" control={control} />
         <InputUpload name="documents" label="Documents" control={control} />
+        <InputSelect
+          name="profile_id"
+          label="Profile"
+          options={[
+            { value: 1, label: "Usuário" },
+            { value: 2, label: "Editor" },
+            { value: 3, label: "Administrador" },
+          ]}
+          control={control}
+        />
       </Stack>
       <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Submit
