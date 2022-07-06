@@ -7,7 +7,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   - [x] Text Input (masked/normalized)
   - [x] Date Input
   - [x] Upload Input
-  - [ ] Autocomplete/Select Input
+  - [x] Autocomplete/Select Input
   - [ ] Number Input
   - [ ] Textarea Input
   - [ ] Schema validation with `yup`

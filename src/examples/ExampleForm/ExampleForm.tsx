@@ -8,6 +8,7 @@ import InputUpload from "@/components/forms/InputUpload";
 import { useEffect } from "react";
 import { parseISO } from "date-fns";
 import InputSelect from "@/components/forms/InputSelect";
+import InputAutocomplete from "@/components/forms/InputAutocomplete";
 
 export type FormValues = {
   name: string;
@@ -30,6 +31,8 @@ const defaultValues = {
   documents: [],
 };
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function ExampleForm({ onSubmit, initialData }: Props) {
   const {
     handleSubmit,
@@ -51,6 +54,15 @@ function ExampleForm({ onSubmit, initialData }: Props) {
     });
   }, [reset, initialData]);
 
+  const loadOptions = async (_inputValue: string, callback: any) => {
+    await sleep(1000);
+
+    callback([
+      { id: 1, username: "Test" },
+      { id: 2, username: "Another user" },
+    ]);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack spacing={2}>
@@ -68,11 +80,18 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           name="profile_id"
           label="Profile"
           options={[
-            { value: 1, label: "Usuário" },
+            { value: 1, label: "User" },
             { value: 2, label: "Editor" },
-            { value: 3, label: "Administrador" },
+            { value: 3, label: "Admin" },
           ]}
           control={control}
+        />
+        <InputAutocomplete
+          loadOptions={loadOptions}
+          name="user"
+          label="User"
+          control={control}
+          labelAttribute="username"
         />
       </Stack>
       <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">

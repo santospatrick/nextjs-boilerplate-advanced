@@ -7,54 +7,55 @@ import {
 import React from "react";
 import { Control, useController } from "react-hook-form";
 import { Props as ReactSelectProps } from "react-select";
-import { Select } from "chakra-react-select";
+import { AsyncSelect } from "chakra-react-select";
+import debounce from "lodash.debounce";
+import get from "lodash.get";
 
 type Props = {
   label: string;
   name: string;
   control: Control<any>;
   helperText?: string;
-  options: any[];
+  loadOptions: (inputValue: string, callback: any) => Promise<void>;
+  labelAttribute: string;
+  valueAttribute?: string;
 } & ReactSelectProps;
-
-type SelectedOption = {
-  label: string;
-  value: string | number;
-};
 
 function InputAutocomplete({
   label,
   name,
   control,
   helperText,
-  options = [],
+  loadOptions,
+  labelAttribute,
+  valueAttribute = "id",
   ...rest
 }: Props) {
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { invalid, error },
-  } = useController({ name, control });
+  } = useController({
+    name,
+    control,
+  });
 
-  const handleChange = (selectedOption: SelectedOption) => {
-    onChange(selectedOption.value);
-  };
-
-  const computedValue = (options || []).find(
-    (option) => option.value === value
-  );
+  const loadOptionsDebounced = debounce(loadOptions, 300);
 
   return (
     <FormControl isInvalid={invalid}>
       <FormLabel htmlFor="email">{label}</FormLabel>
-      <Select
+      <AsyncSelect
         name={name}
-        value={computedValue}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         onBlur={onBlur}
-        options={options}
         placeholder=""
         ref={ref}
-        instanceId={name}
+        // @ts-expect-error: the library definition is wrong
+        loadOptions={loadOptionsDebounced}
+        getOptionValue={(option) => get(option, valueAttribute)}
+        getOptionLabel={(option) => get(option, labelAttribute)}
+        defaultOptions
         {...rest}
       />
       {invalid ? (
