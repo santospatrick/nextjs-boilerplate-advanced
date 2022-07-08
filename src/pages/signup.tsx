@@ -5,10 +5,12 @@ import {
 } from "@/components/forms/RegisterForm/RegisterForm";
 import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
+import logo from "@/assets/logo.svg";
 
 function Register() {
   const router = useRouter();
@@ -30,10 +32,13 @@ function Register() {
   };
 
   return (
-    <Container maxW="container.sm">
+    <Container m="auto" maxW="container.sm">
       <Box py={10}>
+        <Box mb={10} display="flex" justifyContent="center">
+          <Image src={logo} alt="Logoipsum" />
+        </Box>
         <Center>
-          <Heading size="md">New account</Heading>
+          <Heading size="md">Sign up</Heading>
         </Center>
         <RegisterForm ref={ref} onSubmit={onSubmit} />
       </Box>

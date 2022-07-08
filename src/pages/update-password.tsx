@@ -4,9 +4,11 @@ import UpdatePasswordForm, {
 import { UpdatePasswordFormRefType } from "@/components/forms/UpdatePasswordForm/UpdatePasswordForm";
 import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading } from "@chakra-ui/react";
+import Image from "next/image";
 import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
+import logo from "@/assets/logo.svg";
 
 function UpdatePassword() {
   const ref = useRef<UpdatePasswordFormRefType>(null);
@@ -26,8 +28,11 @@ function UpdatePassword() {
   };
 
   return (
-    <Container maxW="container.sm">
+    <Container m="auto" maxW="container.sm">
       <Box py={10}>
+        <Box mb={10} display="flex" justifyContent="center">
+          <Image src={logo} alt="Logoipsum" />
+        </Box>
         <Center>
           <Heading size="md">New password</Heading>
         </Center>

@@ -45,7 +45,7 @@ function Login() {
     <Container maxW="container.sm">
       <Box py={10}>
         <Image
-          src="images/inovando.svg"
+          src="images/logo.svg"
           alt="Inovando"
           margin={"0 auto"}
           boxSize="15rem"

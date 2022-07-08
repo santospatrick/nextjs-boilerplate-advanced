@@ -1,36 +1,33 @@
+import Image from "next/image";
 import LoginForm, { FormValues } from "@/components/forms/LoginForm";
-import api from "@/services/api";
-import { Box, Container, Image } from "@chakra-ui/react";
-import axios from "axios";
+import api, { httpErrorHandler } from "@/services/api";
+import { Box, Container } from "@chakra-ui/react";
 import { SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
+import logo from "@/assets/logo.svg";
+import { useRef } from "react";
+import { LoginFormRefType } from "@/components/forms/LoginForm/LoginForm";
 
 function Login() {
+  const ref = useRef<LoginFormRefType>(null);
+
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     try {
       await api.post("/auth/login", {
         email: values.email,
         password: values.password,
       });
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something wrong happened. Try again later.");
-      }
+    } catch (error: unknown) {
+      httpErrorHandler(error, ref.current?.setError);
     }
   };
 
   return (
-    <Container maxW="container.sm">
+    <Container m="auto" maxW="container.sm">
       <Box py={10}>
-        <Image
-          src="images/inovando.svg"
-          alt="Inovando"
-          margin={"0 auto"}
-          boxSize="15rem"
-        />
-        <LoginForm onSubmit={onSubmit} />
+        <Box display="flex" justifyContent="center">
+          <Image src={logo} alt="Logoipsum" />
+        </Box>
+        <LoginForm ref={ref} onSubmit={onSubmit} />
       </Box>
     </Container>
   );
