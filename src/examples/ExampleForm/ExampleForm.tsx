@@ -105,7 +105,12 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           labelAttribute="username"
         />
       </Stack>
-      <Button mt={2} colorScheme="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={2}
+        colorScheme="twitter"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Submit
       </Button>
     </form>
