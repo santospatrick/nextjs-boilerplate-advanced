@@ -4,9 +4,11 @@ import ForgetPasswordForm, {
 import { ForgetPasswordFormRefType } from "@/components/forms/ForgetPasswordForm/ForgetPasswordForm";
 import api, { httpErrorHandler } from "@/services/api";
 import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
+import logo from "@/assets/logo.svg";
 
 function ForgetPassword() {
   const [sent, setSent] = useState(false);
@@ -26,16 +28,21 @@ function ForgetPassword() {
 
   if (sent) {
     return (
-      <Container maxW="container.sm">
+      <Container m="auto" maxW="container.sm">
         <Box py={10}>
-          <Text>Verify your e-mail and follow the instructions.</Text>
+          <Text align="center">
+            Verify your e-mail and follow the instructions.
+          </Text>
         </Box>
       </Container>
     );
   }
   return (
-    <Container maxW="container.sm">
+    <Container m="auto" maxW="container.sm">
       <Box py={10}>
+        <Box mb={10} display="flex" justifyContent="center">
+          <Image src={logo} alt="Logoipsum" />
+        </Box>
         <Center>
           <Heading size="md">Forget my password</Heading>
         </Center>

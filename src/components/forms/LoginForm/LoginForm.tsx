@@ -1,7 +1,13 @@
 import InputText from "@/components/forms/InputText";
-import { Button, Link, Stack } from "@chakra-ui/react";
+import Link from "next/link";
+import { Button, Link as ChakraLink, Stack } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useImperativeHandle,
+} from "react";
+import { SubmitHandler, useForm, UseFormSetError } from "react-hook-form";
 import schema from "./schema";
 
 export type FormValues = {
@@ -13,11 +19,19 @@ type Props = {
   onSubmit: SubmitHandler<FormValues>;
 };
 
-function LoginForm({ onSubmit }: Props) {
+export type LoginFormRefType = {
+  setError: UseFormSetError<FormValues>;
+};
+
+const LoginForm: ForwardRefRenderFunction<LoginFormRefType, Props> = (
+  { onSubmit },
+  ref
+) => {
   const {
     handleSubmit,
     control,
     formState: { isSubmitting },
+    setError,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -25,6 +39,10 @@ function LoginForm({ onSubmit }: Props) {
       password: "",
     },
   });
+
+  useImperativeHandle(ref, () => ({
+    setError,
+  }));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -37,14 +55,16 @@ function LoginForm({ onSubmit }: Props) {
           control={control}
         />
       </Stack>
-      <Stack align={"end"}>
-        <Link href="/forgetPassword" colorScheme={"twitter"}>
-          Forgot your password?
+      <Stack mt={-2} align={"end"}>
+        <Link href="/forget-password" passHref>
+          <ChakraLink color="blue.500">
+            <small>Forgot your password?</small>
+          </ChakraLink>
         </Link>
       </Stack>
       <Stack align={"center"}>
         <Button
-          mt={2}
+          mt={8}
           colorScheme="twitter"
           isLoading={isSubmitting}
           type="submit"
@@ -55,6 +75,6 @@ function LoginForm({ onSubmit }: Props) {
       </Stack>
     </form>
   );
-}
+};
 
-export default LoginForm;
+export default forwardRef(LoginForm);
