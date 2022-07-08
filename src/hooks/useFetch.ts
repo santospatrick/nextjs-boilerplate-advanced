@@ -15,9 +15,9 @@ import api from "@/services/api";
 export function useFetch<Type>(
   url: string,
   key?: string,
-  options?: UseQueryOptions<Type[], any, Type[]>
+  options?: UseQueryOptions<Type, any, Type>
 ) {
-  const useQueryReturn = useQuery<Type[], Error>(
+  const useQueryReturn = useQuery<Type, Error>(
     key || url,
     () => api.get(url).then((response) => response.data),
     options
