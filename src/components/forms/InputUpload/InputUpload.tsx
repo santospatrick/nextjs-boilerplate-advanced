@@ -40,7 +40,6 @@ function InputUpload({
     name,
     control,
   });
-
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
       onDrop: (acceptedFiles) => {
@@ -49,26 +48,48 @@ function InputUpload({
       ...rest,
     });
 
-  const files = value.map((file: File, index: number) => (
-    <ListItem display="flex" alignItems="center" key={file.name}>
-      <ListIcon as={MdCheckCircle} color="green.500" />
-      {file.name} -{" "}
-      <Box ml={1} fontWeight="bold">
-        <Numeral value={file.size} format={"0.0 b"} />
+  const files = value.map((file: File, index: number, list: Array<File>) => (
+    <ListItem
+      borderBottomWidth={list.length - 1 === index ? undefined : "1px"}
+      borderBottomColor="gray.200"
+      key={file.name}
+    >
+      <Box
+        rounded={"md"}
+        p={4}
+        bgColor="#fff"
+        display="flex"
+        alignItems="center"
+        mb={4}
+      >
+        <ListIcon as={MdCheckCircle} color="green.500" />
+        {file.name} -{" "}
+        <Box ml={1} fontWeight="bold">
+          <Numeral value={file.size} format={"0.0 b"} />
+        </Box>
+        <IconButton
+          variant="outline"
+          aria-label="Delete uploaded item"
+          fontSize="14px"
+          size="sm"
+          onClick={() => {
+            onChange(
+              value.filter(
+                (_: File, valueIndex: number) => valueIndex !== index
+              )
+            );
+          }}
+          icon={<MdClose />}
+          ml="auto"
+        />
       </Box>
-      <IconButton
-        variant="outline"
-        aria-label="Delete uploaded item"
-        fontSize="14px"
-        size="sm"
-        onClick={() => {
-          onChange(
-            value.filter((_: File, valueIndex: number) => valueIndex !== index)
-          );
-        }}
-        icon={<MdClose />}
-        ml="auto"
-      />
+      <Box>
+        {Array.isArray(error) && error[index] ? (
+          <FormErrorMessage mt={-2} mb={4}>
+            {error[index].message}
+          </FormErrorMessage>
+        ) : undefined}
+      </Box>
     </ListItem>
   ));
 
@@ -76,7 +97,10 @@ function InputUpload({
     <FormControl isInvalid={invalid}>
       <FormLabel htmlFor={name}>{label}</FormLabel>
       <Stack spacing={4}>
-        <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
+        <Container
+          $isInvalid={invalid}
+          {...getRootProps({ isFocused, isDragAccept, isDragReject })}
+        >
           <input ref={ref} {...getInputProps()} />
           <p>{description}</p>
         </Container>

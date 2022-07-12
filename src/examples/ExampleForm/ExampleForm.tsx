@@ -11,14 +11,25 @@ import InputSelect from "@/components/forms/InputSelect";
 import InputAutocomplete from "@/components/forms/InputAutocomplete";
 import InputNumber from "@/components/forms/InputNumber";
 import InputPhone from "@/components/forms/InputPhone";
+import InputTextarea from "@/components/forms/InputTextarea";
+
+type User = {
+  id: number;
+  username: string;
+};
 
 export type FormValues = {
   name: string;
   email: string;
-  cpf: string;
   birthdate: Date | string | undefined;
   documents: File[];
+  profile_id: number | null;
+  user: User | null;
+  real: number;
+  dollar: number;
+  creditCard: string;
   phone: string;
+  description: string;
 };
 
 type Props = {
@@ -29,15 +40,15 @@ type Props = {
 const defaultValues = {
   name: "",
   email: "",
-  cpf: "",
   birthdate: undefined,
   documents: [],
   profile_id: null,
   user: null,
   real: 0,
-  dolar: 0,
+  dollar: 0,
   creditCard: "",
   phone: "",
+  description: "",
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -88,12 +99,6 @@ function ExampleForm({ onSubmit, initialData }: Props) {
       <Stack spacing={2}>
         <InputText label="Name" name="name" control={control} />
         <InputText type="email" label="Email" name="email" control={control} />
-        <InputText
-          mask="999.999.999-99"
-          label="CPF"
-          name="cpf"
-          control={control}
-        />
         <InputDate name="birthdate" label="Birthdate" control={control} />
         <InputUpload name="documents" label="Documents" control={control} />
         <InputSelect
@@ -112,12 +117,6 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           label="User"
           control={control}
           labelAttribute="username"
-        />
-        <InputNumber
-          name="real"
-          label="Real"
-          brazilianCurrency
-          control={control}
         />
         <InputNumber
           name="dollar"
@@ -139,6 +138,11 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           label="Phone"
           control={control}
           defaultCountry="US"
+        />
+        <InputTextarea
+          name="description"
+          label="Description"
+          control={control}
         />
       </Stack>
       <Button

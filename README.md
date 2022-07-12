@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   - [x] Autocomplete/Select Input
   - [x] Number Input
   - [x] Phone Input
-  - [ ] Textarea Input
+  - [x] Textarea Input
   - [x] Schema validation with `yup`
 - [ ] Modal with fullscreen option
 - [ ] Authentication screens pre-built

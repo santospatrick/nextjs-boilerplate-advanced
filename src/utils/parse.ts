@@ -1,6 +1,6 @@
 export const parseMaskedNumber = (
   real: number | string,
-  currency: "BRL" | undefined
+  currency?: "BRL" | undefined
 ) => {
   if (!real) return 0;
   if (typeof real === "number") {
