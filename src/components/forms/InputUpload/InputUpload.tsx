@@ -19,12 +19,20 @@ import { Container } from "./styles";
 
 type Props = {
   label: string;
+  description?: string;
   name: string;
   control: Control<any>;
   helperText?: string;
 } & Partial<DropzoneOptions>;
 
-function InputUpload({ label, name, control, helperText, ...rest }: Props) {
+function InputUpload({
+  label,
+  description = "Drag 'n' drop some files here, or click to select files",
+  name,
+  control,
+  helperText,
+  ...rest
+}: Props) {
   const {
     field: { onChange, value = [], ref },
     fieldState: { invalid, error },
@@ -70,7 +78,7 @@ function InputUpload({ label, name, control, helperText, ...rest }: Props) {
       <Stack spacing={4}>
         <Container {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
           <input ref={ref} {...getInputProps()} />
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <p>{description}</p>
         </Container>
         {!!files.length && <List spacing={3}>{files}</List>}
       </Stack>

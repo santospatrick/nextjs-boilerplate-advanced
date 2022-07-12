@@ -10,6 +10,7 @@ import { parseISO } from "date-fns";
 import InputSelect from "@/components/forms/InputSelect";
 import InputAutocomplete from "@/components/forms/InputAutocomplete";
 import InputNumber from "@/components/forms/InputNumber";
+import InputPhone from "@/components/forms/InputPhone";
 
 export type FormValues = {
   name: string;
@@ -17,6 +18,7 @@ export type FormValues = {
   cpf: string;
   birthdate: Date | string | undefined;
   documents: File[];
+  phone: string;
 };
 
 type Props = {
@@ -35,6 +37,7 @@ const defaultValues = {
   real: 0,
   dolar: 0,
   creditCard: "",
+  phone: "",
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -130,6 +133,12 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           label="Credit Card"
           format="#### #### #### ####"
           control={control}
+        />
+        <InputPhone
+          name="phone"
+          label="Phone"
+          control={control}
+          defaultCountry="US"
         />
       </Stack>
       <Button

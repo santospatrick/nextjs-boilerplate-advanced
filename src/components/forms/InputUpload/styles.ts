@@ -27,4 +27,5 @@ export const Container = styled.div<{ theme?: Theme }>`
   color: #000;
   outline: none;
   transition: border 0.24s ease-in-out;
+  background: #fff;
 `;
