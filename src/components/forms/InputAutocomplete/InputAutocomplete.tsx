@@ -55,6 +55,7 @@ function InputAutocomplete({
         getOptionValue={(option) => get(option, valueAttribute)}
         getOptionLabel={(option) => get(option, labelAttribute)}
         defaultOptions
+        instanceId={name}
         {...rest}
       />
       {invalid ? (

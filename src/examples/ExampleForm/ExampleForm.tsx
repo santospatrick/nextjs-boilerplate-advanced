@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { parseISO } from "date-fns";
 import InputSelect from "@/components/forms/InputSelect";
 import InputAutocomplete from "@/components/forms/InputAutocomplete";
+import InputNumber from "@/components/forms/InputNumber";
 
 export type FormValues = {
   name: string;
@@ -20,7 +21,7 @@ export type FormValues = {
 
 type Props = {
   onSubmit: SubmitHandler<FormValues>;
-  initialData: Partial<FormValues> | undefined;
+  initialData?: Partial<FormValues> | undefined;
 };
 
 const defaultValues = {
@@ -29,6 +30,11 @@ const defaultValues = {
   cpf: "",
   birthdate: undefined,
   documents: [],
+  profile_id: null,
+  user: null,
+  real: 0,
+  dolar: 0,
+  creditCard: "",
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -103,6 +109,27 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           label="User"
           control={control}
           labelAttribute="username"
+        />
+        <InputNumber
+          name="real"
+          label="Real"
+          brazilianCurrency
+          control={control}
+        />
+        <InputNumber
+          name="dollar"
+          label="Dollar"
+          prefix="$"
+          thousandSeparator=","
+          decimalScale={2}
+          fixedDecimalScale
+          control={control}
+        />
+        <InputNumber
+          name="creditCard"
+          label="Credit Card"
+          format="#### #### #### ####"
+          control={control}
         />
       </Stack>
       <Button

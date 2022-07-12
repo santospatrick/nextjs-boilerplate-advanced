@@ -32,6 +32,7 @@
     "react-hook-form": "^7.29.0",
     "react-icons": "^4.3.1",
     "react-input-mask": "^2.0.4",
+    "react-number-format": "^4.9.3",
     "react-numeral": "^1.1.1",
     "react-query": "^3.39.1",
     "react-select": "^5.4.0",
