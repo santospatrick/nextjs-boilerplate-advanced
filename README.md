@@ -8,7 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   - [x] Date Input
   - [x] Upload Input
   - [x] Autocomplete/Select Input
-  - [ ] Number Input
+  - [x] Number Input
   - [ ] Textarea Input
   - [x] Schema validation with `yup`
 - [ ] Modal with fullscreen option
