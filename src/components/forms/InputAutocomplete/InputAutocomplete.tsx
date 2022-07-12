@@ -10,6 +10,7 @@ import { Props as ReactSelectProps } from "react-select";
 import { AsyncSelect } from "chakra-react-select";
 import debounce from "lodash.debounce";
 import get from "lodash.get";
+import { chakraStyles } from "../InputSelect/styles";
 
 type Props = {
   label: string;
@@ -56,6 +57,7 @@ function InputAutocomplete({
         getOptionLabel={(option) => get(option, labelAttribute)}
         defaultOptions
         instanceId={name}
+        chakraStyles={chakraStyles}
         {...rest}
       />
       {invalid ? (

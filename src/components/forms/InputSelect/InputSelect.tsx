@@ -8,6 +8,7 @@ import React from "react";
 import { Control, useController } from "react-hook-form";
 import { Props as ReactSelectProps } from "react-select";
 import { Select } from "chakra-react-select";
+import { chakraStyles } from "./styles";
 
 type Props = {
   label: string;
@@ -55,6 +56,7 @@ function InputAutocomplete({
         placeholder=""
         ref={ref}
         instanceId={name}
+        chakraStyles={chakraStyles}
         {...rest}
       />
       {invalid ? (

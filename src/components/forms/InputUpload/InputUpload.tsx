@@ -1,8 +1,10 @@
 import {
+  Box,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  IconButton,
   List,
   ListIcon,
   ListItem,
@@ -12,7 +14,7 @@ import React from "react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import { Control, useController } from "react-hook-form";
 import Numeral from "react-numeral";
-import { MdCheckCircle } from "react-icons/md";
+import { MdCheckCircle, MdClose } from "react-icons/md";
 import { Container } from "./styles";
 
 type Props = {
@@ -39,10 +41,26 @@ function InputUpload({ label, name, control, helperText, ...rest }: Props) {
       ...rest,
     });
 
-  const files = value.map((file: File) => (
-    <ListItem key={file.name}>
+  const files = value.map((file: File, index: number) => (
+    <ListItem display="flex" alignItems="center" key={file.name}>
       <ListIcon as={MdCheckCircle} color="green.500" />
-      {file.name} - <Numeral value={file.size} format={"0.0 b"} />
+      {file.name} -{" "}
+      <Box ml={1} fontWeight="bold">
+        <Numeral value={file.size} format={"0.0 b"} />
+      </Box>
+      <IconButton
+        variant="outline"
+        aria-label="Delete uploaded item"
+        fontSize="14px"
+        size="sm"
+        onClick={() => {
+          onChange(
+            value.filter((_: File, valueIndex: number) => valueIndex !== index)
+          );
+        }}
+        icon={<MdClose />}
+        ml="auto"
+      />
     </ListItem>
   ));
 
