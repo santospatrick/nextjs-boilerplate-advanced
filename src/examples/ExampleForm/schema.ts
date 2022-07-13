@@ -37,10 +37,11 @@ const schema = Yup.object({
     .required(),
   profile_id: Yup.number().nullable().required(),
   user: Yup.object().nullable().required(),
-  dollar: Yup.number()
-    .transform((value) => (isNaN(value) ? undefined : parseMaskedNumber(value)))
-    .min(0.01)
-    .required(),
+  dollar: Yup.mixed().test(
+    "dollar",
+    "Dollar must be higher than 0.01",
+    (value) => value && parseMaskedNumber(value) > 0.01
+  ),
   creditCard: Yup.mixed().test(
     "creditCard",
     "Credit card is invalid",

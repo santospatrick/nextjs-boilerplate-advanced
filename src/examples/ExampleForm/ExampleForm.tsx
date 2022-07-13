@@ -12,6 +12,7 @@ import InputAutocomplete from "@/components/forms/InputAutocomplete";
 import InputNumber from "@/components/forms/InputNumber";
 import InputPhone from "@/components/forms/InputPhone";
 import InputTextarea from "@/components/forms/InputTextarea";
+import numeral from "numeral";
 
 type User = {
   id: number;
@@ -22,7 +23,7 @@ export type FormValues = {
   name: string;
   email: string;
   birthdate: Date | string | undefined;
-  documents: File[];
+  documents: Pick<File, "name" | "size" | "type">[];
   profile_id: number | null;
   user: User | null;
   real: number;
@@ -94,8 +95,37 @@ function ExampleForm({ onSubmit, initialData }: Props) {
     });
   };
 
+  const onClickFulfill = () => {
+    reset({
+      ...defaultValues,
+      name: "Patrick, Spongebob's BF",
+      email: "valid@email.com",
+      birthdate: new Date(),
+      documents: [
+        {
+          name: "file.jpeg",
+          type: "image/jpeg",
+          size: numeral("5 MB").value() as number,
+        },
+      ],
+      profile_id: 1,
+      user: {
+        id: 1,
+        username: "santospatrick",
+      },
+      dollar: 0.01,
+      creditCard: "4929519268662573",
+      phone: "+12025550118",
+      description:
+        "Some description\nWhich can contain line breaks\nAlso can only be resized vertically to prevent layout overflow",
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Button onClick={onClickFulfill} mb={4} colorScheme="blue">
+        Fulfill with values :)
+      </Button>
       <Stack spacing={2}>
         <InputText label="Name" name="name" control={control} />
         <InputText type="email" label="Email" name="email" control={control} />
