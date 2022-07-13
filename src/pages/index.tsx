@@ -4,10 +4,18 @@ import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { parseMaskedNumber } from "@/utils/parse";
 import omit from "lodash.omit";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
+import { getAPIClient } from "@/services/api";
+import { UserResponse } from "@/typings/user";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Index() {
+type Props = {
+  users: UserResponse;
+};
+
+function Index({ users }: Props) {
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     const parsed = {
       ...values,
@@ -24,10 +32,32 @@ function Index() {
   return (
     <Container maxW="container.sm">
       <Box py={10}>
-        <ExampleForm onSubmit={onSubmit} />
+        <ExampleForm onSubmit={onSubmit} users={users} />
       </Box>
     </Container>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const apiClient = getAPIClient(ctx);
+  const { "nextjs-boilerplate-advanced.token": token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const { data: users } = await apiClient.get("/user");
+
+  return {
+    props: {
+      users,
+    },
+  };
+};
 
 export default Index;

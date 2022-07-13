@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Features
-- [ ] Data table with inline editing
+- [x] Authentication screens pre-built
 - [ ] Server side rendering
 - [x] Forms (compatible with `react-hook-form`)
   - [x] Text Input (masked/normalized)
@@ -12,13 +12,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   - [x] Phone Input
   - [x] Textarea Input
   - [x] Schema validation with `yup`
+- [ ] Data table with inline editing
 - [ ] Modal with fullscreen option
-- [ ] Authentication screens pre-built
 - [ ] Profile page for user editing
-- [ ] Form builder
 - [ ] Collapsable & nested menu
 - [ ] Advanced filter for data tables
 - [ ] Email templates for authentication flow
+- [ ] Form builder
 
 ## Technologies
 - [x] Next.js

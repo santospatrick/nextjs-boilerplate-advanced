@@ -13,6 +13,8 @@ import InputNumber from "@/components/forms/InputNumber";
 import InputPhone from "@/components/forms/InputPhone";
 import InputTextarea from "@/components/forms/InputTextarea";
 import numeral from "numeral";
+import api from "@/services/api";
+import { UserResponse } from "@/typings/user";
 
 type User = {
   id: number;
@@ -36,6 +38,7 @@ export type FormValues = {
 type Props = {
   onSubmit: SubmitHandler<FormValues>;
   initialData?: Partial<FormValues> | undefined;
+  users: UserResponse;
 };
 
 const defaultValues = {
@@ -52,9 +55,7 @@ const defaultValues = {
   description: "",
 };
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-function ExampleForm({ onSubmit, initialData }: Props) {
+function ExampleForm({ onSubmit, initialData, users }: Props) {
   const {
     handleSubmit,
     control,
@@ -75,24 +76,16 @@ function ExampleForm({ onSubmit, initialData }: Props) {
     });
   }, [reset, initialData]);
 
-  const loadOptions = (_inputValue: string, callback: any) => {
-    // Example:
-    // api
-    //   .get("user", {
-    //     params: {
-    //       username: inputValue,
-    //     },
-    //   })
-    //   .then(({ data }) => {
-    //     callback(data.data);
-    //   });
-
-    sleep(500).then(() => {
-      callback([
-        { id: 1, username: "Test" },
-        { id: 2, username: "Another" },
-      ]);
-    });
+  const loadOptions = (inputValue: string, callback: any) => {
+    api
+      .get("user", {
+        params: {
+          username: inputValue,
+        },
+      })
+      .then(({ data }) => {
+        callback(data.data);
+      });
   };
 
   const onClickFulfill = () => {
@@ -145,6 +138,7 @@ function ExampleForm({ onSubmit, initialData }: Props) {
           loadOptions={loadOptions}
           name="user"
           label="User"
+          defaultOptions={users.data}
           control={control}
           labelAttribute="username"
         />

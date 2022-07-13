@@ -20,6 +20,7 @@ type Props = {
   loadOptions: (inputValue: string, callback: any) => void;
   labelAttribute: string;
   valueAttribute?: string;
+  defaultOptions?: any[];
 } & ReactSelectProps;
 
 function InputAutocomplete({
@@ -30,6 +31,7 @@ function InputAutocomplete({
   loadOptions,
   labelAttribute,
   valueAttribute = "id",
+  defaultOptions,
   ...rest
 }: Props) {
   const {
@@ -55,7 +57,7 @@ function InputAutocomplete({
         loadOptions={loadOptionsDebounced}
         getOptionValue={(option) => get(option, valueAttribute)}
         getOptionLabel={(option) => get(option, labelAttribute)}
-        defaultOptions
+        defaultOptions={defaultOptions}
         instanceId={name}
         chakraStyles={chakraStyles}
         {...rest}
