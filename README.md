@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Usage
+```bash
+yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-advanced
+```
+
 ## Features
 - [ ] Data table with inline editing
 - [ ] Server side rendering
