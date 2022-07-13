@@ -7,10 +7,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   - [x] Text Input (masked/normalized)
   - [x] Date Input
   - [x] Upload Input
-  - [ ] Autocomplete/Select Input
-  - [ ] Number Input
-  - [ ] Textarea Input
-  - [ ] Schema validation with `yup`
+  - [x] Autocomplete/Select Input
+  - [x] Number Input
+  - [x] Phone Input
+  - [x] Textarea Input
+  - [x] Schema validation with `yup`
 - [ ] Modal with fullscreen option
 - [ ] Authentication screens pre-built
 - [ ] Profile page for user editing
