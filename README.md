@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Features
 - [x] Authentication screens pre-built
-- [ ] Server side rendering
+- [x] Server side rendering
 - [x] Forms (compatible with `react-hook-form`)
   - [x] Text Input (masked/normalized)
   - [x] Date Input
