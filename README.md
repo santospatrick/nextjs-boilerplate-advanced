@@ -35,6 +35,7 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 - [x] React Toastify
 - [x] React Query
 - [x] React Hook Form
+- [x] NProgress
 - [x] Git hooks
 - [ ] Code Generator
 - [ ] Mjml

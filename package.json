@@ -27,6 +27,7 @@
     "lodash.get": "^4.4.2",
     "lodash.omit": "^4.5.0",
     "next": "12.1.1",
+    "next-nprogress": "^1.4.0",
     "next-seo": "^5.2.0",
     "nookies": "^2.5.2",
     "numeral": "^2.0.6",
@@ -44,6 +45,7 @@
     "react-select": "^5.4.0",
     "react-table": "^7.7.0",
     "react-toastify": "^9.0.3",
+    "styled-jsx": "^5.0.2",
     "yup": "^0.32.11",
     "yup-locale-pt": "^0.0.9"
   },
@@ -62,6 +64,7 @@
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.omit": "^4.5.7",
+    "@types/next-nprogress": "^1.4.1",
     "@types/node": "17.0.23",
     "@types/numeral": "^2.0.2",
     "@types/react": "17.0.43",
@@ -84,6 +87,7 @@
     "typescript": "4.6.3"
   },
   "resolutions": {
-    "@types/react": "17.0.2"
+    "@types/react": "17.0.2",
+    "styled-jsx": "3.0.0"
   }
 }
