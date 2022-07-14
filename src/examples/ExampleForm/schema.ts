@@ -40,7 +40,7 @@ const schema = Yup.object({
   dollar: Yup.mixed().test(
     "dollar",
     "Dollar must be higher than 0.01",
-    (value) => value && parseMaskedNumber(value) > 0.01
+    (value) => value && parseMaskedNumber(value) >= 0.01
   ),
   creditCard: Yup.mixed().test(
     "creditCard",

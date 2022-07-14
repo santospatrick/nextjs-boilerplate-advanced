@@ -6,8 +6,8 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 ```
 
 ## Features
-- [ ] Data table with inline editing
-- [ ] Server side rendering
+- [x] Authentication screens pre-built
+- [x] Server side rendering
 - [x] Forms (compatible with `react-hook-form`)
   - [x] Text Input (masked/normalized)
   - [x] Date Input
@@ -17,13 +17,13 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
   - [x] Phone Input
   - [x] Textarea Input
   - [x] Schema validation with `yup`
+- [ ] Data table with inline editing
 - [ ] Modal with fullscreen option
-- [ ] Authentication screens pre-built
 - [ ] Profile page for user editing
-- [ ] Form builder
 - [ ] Collapsable & nested menu
 - [ ] Advanced filter for data tables
 - [ ] Email templates for authentication flow
+- [ ] Form builder
 
 ## Technologies
 - [x] Next.js
@@ -35,8 +35,8 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 - [x] React Toastify
 - [x] React Query
 - [x] React Hook Form
+- [x] Git hooks
 - [ ] Code Generator
-- [ ] Git hooks
 - [ ] Mjml
 
 ## Getting Started
