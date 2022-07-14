@@ -1,48 +1,67 @@
-import React, { useMemo } from "react";
 import DataTable from "@/components/DataTable";
+import { useQuery } from "react-query";
+import api from "@/services/api";
+import { useMemo, useState } from "react";
 
 function HomeTable() {
-  const data = useMemo(
-    () => [
-      {
-        fromUnit: "inches",
-        toUnit: "millimetres (mm)",
-        factor: 25.4,
-      },
-      {
-        fromUnit: "feet",
-        toUnit: "centimetres (cm)",
-        factor: 30.48,
-      },
-      {
-        fromUnit: "yards",
-        toUnit: "metres (m)",
-        factor: 0.91444,
-      },
-    ],
-    []
+  const perPage = 5;
+  const [page, setPage] = useState(1);
+  const {
+    data: users,
+    isLoading,
+    error,
+  } = useQuery(["user", page], () =>
+    api
+      .get("user", {
+        params: {
+          page,
+          perPage,
+        },
+      })
+      .then((response) => response.data)
   );
 
   const columns = useMemo(
     () => [
       {
-        Header: "To convert",
-        accessor: "fromUnit",
+        Header: "Username",
+        accessor: "username",
       },
       {
-        Header: "Into",
-        accessor: "toUnit",
+        Header: "Email",
+        accessor: "email",
       },
       {
-        Header: "Multiply by",
-        accessor: "factor",
-        isNumeric: true,
+        Header: "Created at",
+        accessor: (row: { created_at: Date }) => row.created_at,
+        id: "created_at",
       },
     ],
     []
   );
 
-  return <DataTable columns={columns} data={data} />;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div>
+        An error has ocurred: "{(error as { message: string }).message}"
+      </div>
+    );
+  }
+
+  return (
+    <DataTable
+      columns={columns}
+      data={users.data}
+      pagination={users.pagination}
+      page={page}
+      onChangePage={setPage}
+      perPage={perPage}
+    />
+  );
 }
 
 export default HomeTable;
