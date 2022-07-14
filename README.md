@@ -30,8 +30,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] React Toastify
 - [x] React Query
 - [x] React Hook Form
+- [x] Git hooks
 - [ ] Code Generator
-- [ ] Git hooks
 - [ ] Mjml
 
 ## Getting Started

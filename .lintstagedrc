@@ -1,0 +1,10 @@
+{
+    "src/**/*.tsx": [
+        "yarn tsc --noEmit",
+        "yarn eslint"
+    ],
+    "src/**/*.ts": [
+        "yarn tsc --noEmit",
+        "yarn eslint"
+    ]
+}
