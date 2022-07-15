@@ -1,3 +1,4 @@
+import useDebounce from "@/hooks/useDebounce";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Table,
@@ -10,8 +11,14 @@ import {
   IconButton,
   Stack,
   CircularProgress,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Icon,
 } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { MdSearch } from "react-icons/md";
 import { useTable } from "react-table";
 
 type Pagination = {
@@ -29,6 +36,7 @@ type Props = {
   page: number;
   onChangePage: any;
   isLoading: boolean;
+  onSearchDebounced?: (search: string) => any;
 };
 
 function DataTable({
@@ -39,16 +47,59 @@ function DataTable({
   page,
   onChangePage,
   isLoading,
+  onSearchDebounced,
 }: Props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
 
   const totalPages = useMemo(() => {
     return Math.ceil(pagination.total / perPage);
   }, [pagination.total, perPage]);
 
+  useEffect(() => {
+    setIsSearching(false);
+    if (onSearchDebounced) {
+      onSearchDebounced(debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm, onSearchDebounced]);
+
   return (
     <>
+      <Box
+        w="100%"
+        height="60px"
+        px="10px"
+        display="flex"
+        alignItems="center"
+        justifyContent={"space-between"}
+        background="gray.200"
+        color="gray.600"
+        fontSize="sm"
+      >
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon as={MdSearch} fontSize="xl" />
+          </InputLeftElement>
+          <Input
+            variant="outline"
+            width="100%"
+            onChange={(event) => {
+              setIsSearching(true);
+              setSearchTerm(event.target.value);
+            }}
+            value={searchTerm}
+            placeholder="Enter amount"
+          />
+          {isSearching && (
+            <InputRightElement>
+              <CircularProgress size={6} isIndeterminate color="brand.600" />
+            </InputRightElement>
+          )}
+        </InputGroup>
+      </Box>
       <Table {...getTableProps()}>
         <Thead backgroundColor="#fff">
           {headerGroups.map((headerGroup) => {
@@ -113,7 +164,6 @@ function DataTable({
         display="flex"
         alignItems="center"
         justifyContent={"space-between"}
-        borderRadius="md"
         background="gray.200"
         color="gray.600"
         fontSize="sm"

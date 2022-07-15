@@ -1,7 +1,7 @@
 import DataTable from "@/components/DataTable";
 import { useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   IconButton,
   Input,
@@ -119,6 +119,8 @@ function HomeTable() {
     [currentCell, currentText, page, queryClient]
   );
 
+  const onSearchDebounced = useCallback((_searchTerm: string) => null, []);
+
   if (error) {
     return (
       <div>
@@ -136,6 +138,7 @@ function HomeTable() {
       onChangePage={setPage}
       perPage={perPage}
       isLoading={isLoading}
+      onSearchDebounced={onSearchDebounced}
     />
   );
 }
