@@ -17,7 +17,7 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
   - [x] Phone Input
   - [x] Textarea Input
   - [x] Schema validation with `yup`
-- [ ] Data table with inline editing
+- [x] Data table with inline editing
 - [ ] Modal with fullscreen option
 - [ ] Profile page for user editing
 - [ ] Collapsable & nested menu

@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { AuthProvider } from "@/contexts/AuthContext";
 import NProgress from "next-nprogress/component";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Hydrate state={pageProps.dehydratedState}>
               <Component {...pageProps} />
               <NProgress />
+              <ReactQueryDevtools initialIsOpen={false} />
             </Hydrate>
           </QueryClientProvider>
         </ChakraProvider>
