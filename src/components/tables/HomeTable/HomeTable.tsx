@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 function HomeTable() {
   const perPage = 5;
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentCell, setCurrentCell] = useState(null);
   const [currentText, setCurrentText] = useState("");
   const queryClient = useQueryClient();
@@ -24,10 +25,11 @@ function HomeTable() {
     data: users,
     isLoading,
     error,
-  } = useQuery(["user", page], () =>
+  } = useQuery(["user", page, searchTerm], () =>
     api
       .get("user", {
         params: {
+          q: searchTerm,
           page,
           perPage,
           order: "created_at",
@@ -119,7 +121,9 @@ function HomeTable() {
     [currentCell, currentText, page, queryClient]
   );
 
-  const onSearchDebounced = useCallback((_searchTerm: string) => null, []);
+  const onSearchDebounced = useCallback((searchTerm: string) => {
+    setSearchTerm(searchTerm);
+  }, []);
 
   if (error) {
     return (
@@ -139,6 +143,7 @@ function HomeTable() {
       perPage={perPage}
       isLoading={isLoading}
       onSearchDebounced={onSearchDebounced}
+      inputPlaceholder="Search by username, email..."
     />
   );
 }

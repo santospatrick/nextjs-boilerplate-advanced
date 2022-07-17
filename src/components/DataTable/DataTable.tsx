@@ -37,6 +37,7 @@ type Props = {
   onChangePage: any;
   isLoading: boolean;
   onSearchDebounced?: (search: string) => any;
+  inputPlaceholder?: string;
 };
 
 function DataTable({
@@ -48,6 +49,7 @@ function DataTable({
   onChangePage,
   isLoading,
   onSearchDebounced,
+  inputPlaceholder = "",
 }: Props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
@@ -91,7 +93,7 @@ function DataTable({
               setSearchTerm(event.target.value);
             }}
             value={searchTerm}
-            placeholder="Enter amount"
+            placeholder={inputPlaceholder}
           />
           {isSearching && (
             <InputRightElement>
