@@ -2,17 +2,12 @@ import DataTable from "@/components/DataTable";
 import { useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
 import { useCallback, useMemo, useState } from "react";
-import {
-  IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Stack,
-} from "@chakra-ui/react";
-import { MdArrowRightAlt, MdCheck, MdEdit } from "react-icons/md";
+import { IconButton, Stack } from "@chakra-ui/react";
+import { MdArrowRightAlt, MdEdit } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import UsernameForm from "@/components/forms/UsernameForm";
 
 function HomeTable() {
   const perPage = 5;
@@ -47,12 +42,11 @@ function HomeTable() {
         Cell: (data: any) => {
           if (currentCell === data.cell.row.original.id) {
             return (
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
+              <UsernameForm
+                onSubmit={(values) => {
                   api
                     .put(`user/${currentCell}`, {
-                      username: currentText,
+                      username: values.username,
                     })
                     .catch(() => {
                       toast.error("Couldn't edit user, try again later");
@@ -64,7 +58,7 @@ function HomeTable() {
                         ...old,
                         data: old?.data?.map((data) =>
                           data.id === currentCell
-                            ? { ...data, username: currentText }
+                            ? { ...data, username: values.username }
                             : data
                         ),
                       };
@@ -73,23 +67,12 @@ function HomeTable() {
                   setCurrentCell(null);
                   setCurrentText("");
                 }}
-              >
-                <InputGroup size="md">
-                  <Input
-                    autoFocus
-                    onChange={(event) => setCurrentText(event.target.value)}
-                    value={currentText}
-                  />
-                  <InputRightElement>
-                    <IconButton
-                      type="submit"
-                      aria-label="Submit changes"
-                      icon={<MdCheck />}
-                      size="sm"
-                    />
-                  </InputRightElement>
-                </InputGroup>
-              </form>
+                defaultValues={{ username: currentText }}
+                onEscapeKeypress={() => {
+                  setCurrentCell(null);
+                  setCurrentText("");
+                }}
+              />
             );
           }
           return (
