@@ -21,10 +21,8 @@ const UserId: NextPageWithLayout<Props> = ({ data }) => {
   const formRef = useRef<UserFormRefType>(null);
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    // PUT
-    const apiValues = removeEmptyValues(
-      omit(values, ["id", "created_at", "confirmPassword"])
-    );
+    removeEmptyValues(values);
+    const apiValues = omit(values, ["id", "created_at", "confirmPassword"]);
     await api.put(`/user/${values.id}`, apiValues);
     toast.success("Data edited successfully!");
     formRef.current?.setValue("password", "");

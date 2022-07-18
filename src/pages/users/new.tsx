@@ -24,7 +24,6 @@ const UserId: NextPageWithLayout<Props> = ({ data }) => {
   const formRef = useRef<UserFormRefType>(null);
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    // POST
     const apiValues = omit(values, ["confirmPassword"]);
     try {
       const { data } = await api.post<AxiosResponseData>("user", apiValues);
