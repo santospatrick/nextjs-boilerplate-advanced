@@ -14,3 +14,11 @@ export const parseMaskedNumber = (
       : match?.replace(",", "");
   return pureNumber ? parseFloat(pureNumber) : 0;
 };
+
+export const removeEmptyValues = (obj: any) => {
+  Object.keys(obj).forEach((key) => {
+    if (obj[key] === "") {
+      delete obj[key];
+    }
+  });
+};

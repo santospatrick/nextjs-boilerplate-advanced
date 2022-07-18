@@ -1,6 +1,6 @@
 import { Box, IconButton, Stack } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import logo from "@/assets/logo.svg";
 import { MdMenu } from "react-icons/md";
 import MainDrawer from "@/components/MainDrawer";
@@ -13,6 +13,10 @@ type Props = {
 
 function PrivatePage({ children, title = "" }: Props) {
   const [open, setOpen] = useState(false);
+
+  const onClose = useCallback(() => {
+    setOpen(false);
+  }, []);
 
   return (
     <div>
@@ -48,7 +52,7 @@ function PrivatePage({ children, title = "" }: Props) {
         </Box>
         <Box pl={5}>{title}</Box>
       </Box>
-      <MainDrawer isOpen={open} onClose={() => setOpen(false)} />
+      <MainDrawer isOpen={open} onClose={onClose} />
       <Box width="100%" display="flex">
         {children}
       </Box>

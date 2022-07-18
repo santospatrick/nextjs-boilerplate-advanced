@@ -13,12 +13,12 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 
-export type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<Type = any> = NextPage<Type> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPageWithLayout<any>;
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
@@ -34,8 +34,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
               {getLayout(<Component {...pageProps} />)}
-              <NProgress />
-              <ReactQueryDevtools initialIsOpen={false} />
+              <NProgress
+                color={"black"}
+                options={{ easing: "ease", speed: 500 }}
+                spinner={true}
+              />
+              <ReactQueryDevtools
+                position="bottom-right"
+                initialIsOpen={false}
+              />
             </Hydrate>
           </QueryClientProvider>
         </ChakraProvider>

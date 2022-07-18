@@ -9,9 +9,10 @@ import {
   InputRightElement,
   Stack,
 } from "@chakra-ui/react";
-import { MdCheck, MdEdit } from "react-icons/md";
+import { MdArrowRightAlt, MdCheck, MdEdit } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 function HomeTable() {
   const perPage = 5;
@@ -116,6 +117,17 @@ function HomeTable() {
         Header: "Created at",
         accessor: (row: { created_at: Date }) => row.created_at,
         id: "created_at",
+      },
+      {
+        Header: "Actions",
+        Cell: (data: any) => (
+          <Link href={`/users/${data.cell.row.original.id}`} passHref>
+            <IconButton
+              aria-label={"Edit user"}
+              icon={<MdArrowRightAlt size={22} />}
+            />
+          </Link>
+        ),
       },
     ],
     [currentCell, currentText, page, queryClient]

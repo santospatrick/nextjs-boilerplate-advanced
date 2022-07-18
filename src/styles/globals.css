@@ -24,3 +24,7 @@ input:-webkit-autofill:active{
 input {
   background-color: white !important;
 }
+
+#nprogress .bar {
+  height: 5px;
+}

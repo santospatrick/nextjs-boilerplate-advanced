@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Drawer,
   DrawerBody,
@@ -6,21 +7,33 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerProps,
+  HStack,
   IconButton,
   List,
   ListIcon,
   ListItem,
   Stack,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { MdDashboard, MdMenu, MdPerson } from "react-icons/md";
 import logo from "@/assets/logo.svg";
-import Link from "next/link";
+import NextLink from "next/link";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useRouter } from "next/router";
 
 type Props = Pick<DrawerProps, "onClose" | "isOpen">;
 
 function MainDrawer({ onClose, isOpen }: Props) {
+  const { user, logout } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    onClose();
+  }, [router.asPath, onClose]);
+
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
@@ -42,10 +55,10 @@ function MainDrawer({ onClose, isOpen }: Props) {
             </Box>
           </Stack>
         </DrawerHeader>
-        <DrawerBody p={0}>
+        <DrawerBody display="flex" flexDirection="column" p={0}>
           <List>
             <ListItem display="flex">
-              <Link href="/" passHref>
+              <NextLink href="/" passHref>
                 <Box
                   display="flex"
                   alignItems="center"
@@ -57,10 +70,10 @@ function MainDrawer({ onClose, isOpen }: Props) {
                   <ListIcon fontSize="24px" as={MdDashboard} color="gray.500" />
                   <span>Dashboard</span>
                 </Box>
-              </Link>
+              </NextLink>
             </ListItem>
             <ListItem display="flex">
-              <Link href="/users" passHref>
+              <NextLink href="/users" passHref>
                 <Box
                   display="flex"
                   alignItems="center"
@@ -72,9 +85,29 @@ function MainDrawer({ onClose, isOpen }: Props) {
                   <ListIcon fontSize="24px" as={MdPerson} color="gray.500" />
                   <span>Usuários</span>
                 </Box>
-              </Link>
+              </NextLink>
             </ListItem>
           </List>
+          <Box display="flex" p={4} borderTopWidth="1px" mt="auto">
+            <HStack spacing={4}>
+              <Avatar size="sm" />
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="flex-start"
+              >
+                <Text fontSize="xs">{user?.username}</Text>
+                <Link
+                  onClick={logout}
+                  as="button"
+                  fontSize="10px"
+                  color="brand.600"
+                >
+                  Logout
+                </Link>
+              </Box>
+            </HStack>
+          </Box>
         </DrawerBody>
       </DrawerContent>
     </Drawer>

@@ -1,5 +1,5 @@
 import api from "@/services/api";
-import { parseCookies, setCookie } from "nookies";
+import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import Router from "next/router";
 
@@ -7,6 +7,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
   signIn: (data: SigninValues) => Promise<void>;
+  logout: () => void;
 };
 
 export const AuthContext = createContext({} as AuthContextType);
@@ -57,8 +58,13 @@ export function AuthProvider({ children }: Props) {
     Router.push("/");
   }
 
+  function logout() {
+    destroyCookie(null, "nextjs-boilerplate-advanced.token");
+    Router.push("/login");
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signIn, user }}>
+    <AuthContext.Provider value={{ isAuthenticated, signIn, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
