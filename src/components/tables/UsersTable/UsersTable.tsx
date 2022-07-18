@@ -34,6 +34,11 @@ function HomeTable() {
       .then((response) => response.data)
   );
 
+  const onEscapeKeypress = useCallback(() => {
+    setCurrentCell(null);
+    setCurrentText("");
+  }, []);
+
   const columns = useMemo(
     () => [
       {
@@ -68,10 +73,7 @@ function HomeTable() {
                   setCurrentText("");
                 }}
                 defaultValues={{ username: currentText }}
-                onEscapeKeypress={() => {
-                  setCurrentCell(null);
-                  setCurrentText("");
-                }}
+                onEscapeKeypress={onEscapeKeypress}
               />
             );
           }

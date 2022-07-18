@@ -38,7 +38,7 @@ function UsernameForm({ onSubmit, defaultValues, onEscapeKeypress }: Props) {
     return () => {
       window.removeEventListener("keydown", onKeydown);
     };
-  }, []);
+  }, [defaultValues, onEscapeKeypress, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
