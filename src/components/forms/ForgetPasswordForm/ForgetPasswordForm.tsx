@@ -1,4 +1,4 @@
-import InputText from "@/components/forms/InputText";
+import InputText from "@/components/inputs/InputText";
 import { Button, Stack } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {

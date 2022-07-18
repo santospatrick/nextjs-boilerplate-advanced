@@ -1,6 +1,6 @@
-import InputDate from "@/components/forms/InputDate";
-import InputText from "@/components/forms/InputText";
-import InputUpload from "@/components/forms/InputUpload";
+import InputDate from "@/components/inputs/InputDate";
+import InputText from "@/components/inputs/InputText";
+import InputUpload from "@/components/inputs/InputUpload";
 import schema from "@/examples/ExampleForm/schema";
 import {
   Box,
