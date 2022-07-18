@@ -11,7 +11,7 @@ import InputMask, { Props as InputMaskProps } from "react-input-mask";
 import { ChangeEvent } from "react";
 
 type Props = {
-  label: string;
+  label?: string;
   name: string;
   control: Control<any>;
   helperText?: string;
@@ -40,7 +40,7 @@ function InputText({
 
   return (
     <FormControl isInvalid={invalid}>
-      <FormLabel htmlFor={name}>{label}</FormLabel>
+      {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
       {mask ? (
         <InputMask
           mask={mask}

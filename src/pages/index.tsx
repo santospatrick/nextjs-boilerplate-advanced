@@ -1,63 +1,23 @@
-import { Box, Container } from "@chakra-ui/react";
-import ExampleForm, { FormValues } from "@/examples/ExampleForm";
-import { SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
-import { parseMaskedNumber } from "@/utils/parse";
-import omit from "lodash.omit";
-import { GetServerSideProps } from "next";
-import { parseCookies } from "nookies";
-import { getAPIClient } from "@/services/api";
-import { UserResponse } from "@/typings/user";
+import { AuthContext } from "@/contexts/AuthContext";
+import PrivatePage from "@/layouts/PrivatePage";
+import { Container, Text } from "@chakra-ui/react";
+import React, { ReactElement, useContext } from "react";
+import type { NextPageWithLayout } from "./_app";
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-type Props = {
-  users: UserResponse;
-};
-
-function Index({ users }: Props) {
-  const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    const parsed = {
-      ...values,
-      dollar: parseMaskedNumber(values.dollar),
-      userId: values.user?.id,
-    };
-    const data = omit(parsed, ["user"]);
-    // eslint-disable-next-line no-console
-    console.log("🚀 ~ submit data:", data);
-    await sleep(1000);
-    toast.success("Check your browser console 🚀");
-  };
-
+const Index: NextPageWithLayout = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <Container maxW="container.sm">
-      <Box py={10}>
-        <ExampleForm onSubmit={onSubmit} users={users} />
-      </Box>
+    <Container maxWidth="1400px" m="auto" py={10}>
+      <Text align="center">Dashboard!</Text>
+      <Text align="center">
+        Logged in as: {user?.username} ({user?.email})
+      </Text>
     </Container>
   );
-}
+};
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const apiClient = getAPIClient(ctx);
-  const { "nextjs-boilerplate-advanced.token": token } = parseCookies(ctx);
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  const { data: users } = await apiClient.get("/user");
-
-  return {
-    props: {
-      users,
-    },
-  };
+Index.getLayout = function getLayout(page: ReactElement) {
+  return <PrivatePage title="Dashboard">{page}</PrivatePage>;
 };
 
 export default Index;

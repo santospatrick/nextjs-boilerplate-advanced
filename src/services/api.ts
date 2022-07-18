@@ -35,6 +35,11 @@ export const httpErrorHandler = (
   setError: UseFormSetError<any> | undefined
 ) => {
   if (axios.isAxiosError(error) && error.response) {
+    if (error.response?.data as any) {
+      toast.error((error.response?.data as any).msg);
+      return;
+    }
+
     const errorsList = (error.response?.data as ErrorResponse).error || [];
     errorsList.forEach((fieldError) => {
       const { field, message } = fieldError;

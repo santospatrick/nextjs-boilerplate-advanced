@@ -21,9 +21,9 @@ function Login() {
   };
 
   return (
-    <Container m="auto" maxW="container.sm">
+    <Container m="auto" maxW="400px">
       <Box py={10}>
-        <Box display="flex" justifyContent="center">
+        <Box mb={10} display="flex" justifyContent="center">
           <Image src={logo} alt="Logoipsum" />
         </Box>
         <LoginForm ref={ref} onSubmit={onSubmit} />
