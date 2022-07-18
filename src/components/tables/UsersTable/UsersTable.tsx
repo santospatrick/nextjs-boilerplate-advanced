@@ -58,7 +58,7 @@ function HomeTable() {
                       toast.error("Couldn't edit user, try again later");
                     });
                   queryClient.setQueryData(
-                    ["user", page],
+                    ["user", page, searchTerm],
                     (old: Partial<UserResponse> | undefined) => {
                       return {
                         ...old,
@@ -130,7 +130,7 @@ function HomeTable() {
         ),
       },
     ],
-    [currentCell, currentText, page, queryClient]
+    [currentCell, currentText, page, queryClient, searchTerm]
   );
 
   const onSearchDebounced = useCallback((searchTerm: string) => {
