@@ -4,6 +4,7 @@ import React, { ReactNode, useState } from "react";
 import logo from "@/assets/logo.svg";
 import { MdMenu } from "react-icons/md";
 import MainDrawer from "@/components/MainDrawer";
+import Link from "next/link";
 
 type Props = {
   children: ReactNode;
@@ -11,7 +12,7 @@ type Props = {
 };
 
 function PrivatePage({ children, title = "" }: Props) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
@@ -37,7 +38,11 @@ function PrivatePage({ children, title = "" }: Props) {
               size="lg"
             />
             <Box pr={5} width="100%" display="flex" justifyContent="center">
-              <Image src={logo} alt="Logoipsum" />
+              <Link href="/" passHref>
+                <Box as="a" display="flex" alignItems="center">
+                  <Image src={logo} alt="Logoipsum" />
+                </Box>
+              </Link>
             </Box>
           </Stack>
         </Box>
@@ -45,7 +50,6 @@ function PrivatePage({ children, title = "" }: Props) {
       </Box>
       <MainDrawer isOpen={open} onClose={() => setOpen(false)} />
       <Box width="100%" display="flex">
-        {open && <Box width="240px" minHeight="1px"></Box>}
         {children}
       </Box>
     </div>

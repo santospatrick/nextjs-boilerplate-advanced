@@ -1,13 +1,14 @@
 import PrivatePage from "@/layouts/PrivatePage";
+import { Container } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { ReactElement } from "react";
 import type { NextPageWithLayout } from "./_app";
 
 const Index: NextPageWithLayout = () => {
   return (
-    <div>
+    <Container maxWidth="1200px" m="auto" py={10}>
       <Link href="/forms">link</Link>
-    </div>
+    </Container>
   );
 };
 

@@ -4,6 +4,7 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
+  DrawerOverlay,
   DrawerProps,
   IconButton,
   List,
@@ -21,12 +22,8 @@ type Props = Pick<DrawerProps, "onClose" | "isOpen">;
 
 function MainDrawer({ onClose, isOpen }: Props) {
   return (
-    <Drawer
-      closeOnOverlayClick={false}
-      placement="left"
-      onClose={onClose}
-      isOpen={isOpen}
-    >
+    <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <DrawerOverlay />
       <DrawerContent maxWidth="240px">
         <DrawerHeader p={0} borderBottomWidth="1px">
           <Stack width="100%" direction="row">
