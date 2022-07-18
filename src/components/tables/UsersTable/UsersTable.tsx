@@ -115,7 +115,7 @@ function HomeTable() {
         ),
       },
     ],
-    [currentCell, currentText, page, queryClient, searchTerm]
+    [currentCell, currentText, onEscapeKeypress, page, queryClient, searchTerm]
   );
 
   const onSearchDebounced = useCallback((searchTerm: string) => {
