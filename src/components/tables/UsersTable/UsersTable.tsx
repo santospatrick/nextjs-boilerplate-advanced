@@ -2,8 +2,8 @@ import DataTable from "@/components/DataTable";
 import { useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
 import { useCallback, useMemo, useState } from "react";
-import { IconButton, Stack } from "@chakra-ui/react";
-import { MdArrowRightAlt, MdEdit } from "react-icons/md";
+import { HStack, IconButton, Stack } from "@chakra-ui/react";
+import { MdArrowRightAlt, MdDelete, MdEdit } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -108,12 +108,21 @@ function HomeTable() {
       {
         Header: "Actions",
         Cell: (data: any) => (
-          <Link href={`/users/${data.cell.row.original.id}`} passHref>
+          <HStack>
+            <Link href={`/users/${data.cell.row.original.id}`} passHref>
+              <IconButton
+                aria-label={"Edit user"}
+                icon={<MdArrowRightAlt size={22} />}
+              />
+            </Link>
             <IconButton
               aria-label={"Edit user"}
-              icon={<MdArrowRightAlt size={22} />}
+              onClick={() => {
+                api.delete(`users/${data.cell.row.original.id}`);
+              }}
+              icon={<MdDelete size={22} />}
             />
-          </Link>
+          </HStack>
         ),
       },
     ],

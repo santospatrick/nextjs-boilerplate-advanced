@@ -44,10 +44,12 @@ function ModalFullscreen({
         <ModalHeader>
           {title}{" "}
           <IconButton
+            mt={-1}
             ml={2}
             aria-label="Toggle modal fullscreen"
             variant="outline"
-            size="sm"
+            size="xs"
+            fontSize="20px"
             icon={isFullscreen ? <MdFullscreenExit /> : <MdFullscreen />}
             onClick={toggle}
           />

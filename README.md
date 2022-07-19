@@ -65,8 +65,8 @@ yarn dev # start development server
 - [x] Mjml
 - [x] useHooks Typescript
 - [x] Utility Types
+- [x] Storybook
 - [ ] Code Generator
-- [ ] Storybook
 
 ## Getting Started
 

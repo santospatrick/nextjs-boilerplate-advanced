@@ -1,11 +1,16 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, UseFormSetError } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputText from "@/components/inputs/InputText";
 import schema from "./schema";
 import { Button, Stack } from "@chakra-ui/react";
 import InputDate from "@/components/inputs/InputDate";
 import InputUpload from "@/components/inputs/InputUpload";
-import { useEffect } from "react";
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useEffect,
+  useImperativeHandle,
+} from "react";
 import { parseISO } from "date-fns";
 import InputSelect from "@/components/inputs/InputSelect";
 import InputAutocomplete from "@/components/inputs/InputAutocomplete";
@@ -38,7 +43,7 @@ export type FormValues = {
 type Props = {
   onSubmit: SubmitHandler<FormValues>;
   initialData?: Partial<FormValues> | undefined;
-  users: UserResponse;
+  users: UserResponse | undefined;
 };
 
 const defaultValues = {
@@ -55,16 +60,28 @@ const defaultValues = {
   description: "",
 };
 
-function ExampleForm({ onSubmit, initialData, users }: Props) {
+export type ExampleFormRef = {
+  setError: UseFormSetError<FormValues>;
+};
+
+const ExampleForm: ForwardRefRenderFunction<ExampleFormRef, Props> = (
+  { onSubmit, initialData, users },
+  ref
+) => {
   const {
     handleSubmit,
     control,
     reset,
     formState: { isSubmitting },
+    setError,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues,
   });
+
+  useImperativeHandle(ref, () => ({
+    setError,
+  }));
 
   useEffect(() => {
     reset({
@@ -92,7 +109,7 @@ function ExampleForm({ onSubmit, initialData, users }: Props) {
     reset({
       ...defaultValues,
       name: "Patrick, Spongebob's BF",
-      email: "valid@email.com",
+      email: "admin@admin.com",
       birthdate: new Date(),
       documents: [
         {
@@ -138,7 +155,7 @@ function ExampleForm({ onSubmit, initialData, users }: Props) {
           loadOptions={loadOptions}
           name="user"
           label="User"
-          defaultOptions={users.data}
+          defaultOptions={users?.data}
           control={control}
           labelAttribute="username"
         />
@@ -179,6 +196,6 @@ function ExampleForm({ onSubmit, initialData, users }: Props) {
       </Button>
     </form>
   );
-}
+};
 
-export default ExampleForm;
+export default forwardRef(ExampleForm);
