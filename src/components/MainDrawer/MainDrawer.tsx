@@ -10,7 +10,6 @@ import {
   HStack,
   IconButton,
   List,
-  ListIcon,
   ListItem,
   Stack,
   Link,
@@ -22,6 +21,7 @@ import logo from "@/assets/logo.svg";
 import NextLink from "next/link";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
+import MenuLink from "./MenuLink";
 
 type Props = Pick<DrawerProps, "onClose" | "isOpen">;
 
@@ -55,36 +55,12 @@ function MainDrawer({ onClose, isOpen }: Props) {
           </Stack>
         </DrawerHeader>
         <DrawerBody display="flex" flexDirection="column" p={0}>
-          <List>
+          <List onClick={onClose}>
             <ListItem display="flex">
-              <NextLink href="/" passHref>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  height="48px"
-                  as="a"
-                  p={3}
-                  width="100%"
-                >
-                  <ListIcon fontSize="24px" as={MdDashboard} color="gray.500" />
-                  <span>Dashboard</span>
-                </Box>
-              </NextLink>
+              <MenuLink href="/" icon={MdDashboard} text="Dashboard" />
             </ListItem>
             <ListItem display="flex">
-              <NextLink href="/users" passHref>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  height="48px"
-                  as="a"
-                  p={3}
-                  width="100%"
-                >
-                  <ListIcon fontSize="24px" as={MdPerson} color="gray.500" />
-                  <span>Usuários</span>
-                </Box>
-              </NextLink>
+              <MenuLink href="/users" icon={MdPerson} text="Users" />
             </ListItem>
           </List>
           <Box
