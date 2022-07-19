@@ -12,6 +12,7 @@ import NProgress from "next-nprogress/component";
 import { ReactQueryDevtools } from "react-query/devtools";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 export type NextPageWithLayout<Type = any> = NextPage<Type> & {
   getLayout?: (page: ReactElement) => ReactNode;

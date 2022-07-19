@@ -43,6 +43,7 @@
     "react-input-mask": "^2.0.4",
     "react-number-format": "^4.9.3",
     "react-numeral": "^1.1.1",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-phone-number-input": "^3.2.4",
     "react-query": "^3.39.1",
     "react-select": "^5.4.0",

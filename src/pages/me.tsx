@@ -1,24 +1,21 @@
 import { GetServerSideProps } from "next";
+import ProfileForm from "@/components/forms/ProfileForm";
+import {
+  FormValues,
+  ProfileFormRefType,
+} from "@/components/forms/ProfileForm/ProfileForm";
 import PrivatePage from "@/layouts/PrivatePage";
 import { Container } from "@chakra-ui/react";
 import React, { ReactElement, useRef } from "react";
-import { NextPageWithLayout } from "../_app";
-import api, { getAPIClient, httpErrorHandler } from "@/services/api";
-import { UserData } from "@/typings/user";
-import UserForm from "@/components/forms/UserForm";
 import { SubmitHandler } from "react-hook-form";
-import { FormValues } from "@/components/forms/UserForm";
-import { toast } from "react-toastify";
-import omit from "lodash.omit";
+import { NextPageWithLayout } from "./_app";
+import api, { getAPIClient, httpErrorHandler } from "@/services/api";
 import { removeEmptyValues } from "@/utils/parse";
-import { UserFormRefType } from "@/components/forms/UserForm/UserForm";
+import omit from "lodash.omit";
+import { toast } from "react-toastify";
 
-type Props = {
-  data: UserData;
-};
-
-const UserId: NextPageWithLayout<Props> = ({ data }) => {
-  const formRef = useRef<UserFormRefType>(null);
+const Me: NextPageWithLayout = ({ data }) => {
+  const formRef = useRef<ProfileFormRefType>(null);
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     removeEmptyValues(values);
@@ -36,15 +33,14 @@ const UserId: NextPageWithLayout<Props> = ({ data }) => {
 
   return (
     <Container maxW="1400px" m="auto" py={10}>
-      <UserForm ref={formRef} onSubmit={onSubmit} defaultValues={data} />
+      <ProfileForm onSubmit={onSubmit} defaultValues={data} />
     </Container>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const id = ctx.query.id;
   const api = getAPIClient(ctx);
-  const { data } = await api.get(`user/${id}`);
+  const { data } = await api.get("auth/me");
 
   return {
     props: {
@@ -53,8 +49,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   };
 };
 
-UserId.getLayout = (page: ReactElement) => {
-  return <PrivatePage>{page}</PrivatePage>;
+Me.getLayout = (app: ReactElement) => {
+  return <PrivatePage>{app}</PrivatePage>;
 };
 
-export default UserId;
+export default Me;

@@ -23,7 +23,7 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 - [x] Modal with fullscreen option
 - [x] Email templates for authentication flow
 - [x] VSCode workspace recommendations
-- [ ] Profile page for user editing
+- [x] Profile page for user editing
 - [ ] Collapsable & nested menu
 - [ ] Advanced filter for data tables
 - [ ] Form builder
@@ -40,8 +40,9 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 - [x] React Hook Form
 - [x] NProgress
 - [x] Git hooks
+- [x] Perfect scrollbar
+- [x] Mjml
 - [ ] Code Generator
-- [ ] Mjml
 
 ## Getting Started
 
