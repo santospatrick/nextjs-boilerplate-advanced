@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 Me.getLayout = (app: ReactElement) => {
-  return <PrivatePage>{app}</PrivatePage>;
+  return <PrivatePage title="Profile">{app}</PrivatePage>;
 };
 
 export default Me;

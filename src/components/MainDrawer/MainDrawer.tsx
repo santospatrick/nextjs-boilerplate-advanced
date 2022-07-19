@@ -16,7 +16,12 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useContext, useEffect } from "react";
-import { MdDashboard, MdMenu, MdPerson } from "react-icons/md";
+import {
+  MdDashboard,
+  MdMenu,
+  MdSupervisedUserCircle,
+  MdVerifiedUser,
+} from "react-icons/md";
 import logo from "@/assets/logo.svg";
 import NextLink from "next/link";
 import { AuthContext } from "@/contexts/AuthContext";
@@ -60,7 +65,14 @@ function MainDrawer({ onClose, isOpen }: Props) {
               <MenuLink href="/" icon={MdDashboard} text="Dashboard" />
             </ListItem>
             <ListItem display="flex">
-              <MenuLink href="/users" icon={MdPerson} text="Users" />
+              <MenuLink
+                href="/users"
+                icon={MdSupervisedUserCircle}
+                text="Users"
+              />
+            </ListItem>
+            <ListItem display="flex">
+              <MenuLink href="/me" icon={MdVerifiedUser} text="Profile" />
             </ListItem>
           </List>
           <Box
