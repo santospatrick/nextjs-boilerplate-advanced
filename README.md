@@ -46,6 +46,7 @@ yarn dev # start development server
 - [x] VSCode workspace recommendations
 - [x] Profile page for user editing
 - [x] Collapsable & nested menu
+- [x] Code Generator
 - [ ] Advanced filter for data tables
 - [ ] Form builder
 
@@ -66,7 +67,7 @@ yarn dev # start development server
 - [x] useHooks Typescript
 - [x] Utility Types
 - [x] Storybook
-- [ ] Code Generator
+- [x] Plop (Template Generator)
 
 ## Storybook
 

@@ -11,7 +11,8 @@
     "build-storybook": "build-storybook",
     "prepare": "husky install",
     "emails": "mjml ./emails/templates/*.mjml -o ./emails/dist",
-    "emails:watch": "mjml -w ./emails/templates/*.mjml -o ./emails/dist"
+    "emails:watch": "mjml -w ./emails/templates/*.mjml -o ./emails/dist",
+    "generate": "plop --plopfile ./generators/plopfile.js"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
@@ -91,6 +92,7 @@
     "eslint-plugin-storybook": "^0.5.10",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "plop": "^3.1.1",
     "prettier": "2.6.2",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.6.3"
