@@ -15,24 +15,21 @@ import {
   Link,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useContext, useEffect } from "react";
-import {
-  MdDashboard,
-  MdMenu,
-  MdSupervisedUserCircle,
-  MdVerifiedUser,
-} from "react-icons/md";
+import React, { useContext, useEffect, useState } from "react";
+import { MdMenu } from "react-icons/md";
 import logo from "@/assets/logo.svg";
 import NextLink from "next/link";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
 import MenuLink from "./MenuLink";
+import { menu } from "./menu";
 
 type Props = Pick<DrawerProps, "onClose" | "isOpen">;
 
 function MainDrawer({ onClose, isOpen }: Props) {
   const { user, logout } = useContext(AuthContext);
   const router = useRouter();
+  const [nestedMenuOpen, setNestedMenuOpen] = useState<number | null>(null);
 
   useEffect(() => {
     onClose();
@@ -61,19 +58,31 @@ function MainDrawer({ onClose, isOpen }: Props) {
         </DrawerHeader>
         <DrawerBody display="flex" flexDirection="column" p={0}>
           <List onClick={onClose}>
-            <ListItem display="flex">
-              <MenuLink href="/" icon={MdDashboard} text="Dashboard" />
-            </ListItem>
-            <ListItem display="flex">
-              <MenuLink
-                href="/users"
-                icon={MdSupervisedUserCircle}
-                text="Users"
-              />
-            </ListItem>
-            <ListItem display="flex">
-              <MenuLink href="/me" icon={MdVerifiedUser} text="Profile" />
-            </ListItem>
+            {menu.map((menuItem, menuItemKey) => (
+              <ListItem display="flex" flexDirection="column" key={menuItemKey}>
+                <MenuLink
+                  isOpened={nestedMenuOpen === menuItemKey}
+                  onClickDropdown={() => {
+                    if (nestedMenuOpen === menuItemKey) {
+                      setNestedMenuOpen(null);
+                    } else {
+                      setNestedMenuOpen(menuItemKey);
+                    }
+                  }}
+                  {...menuItem}
+                />
+                {nestedMenuOpen === menuItemKey && (
+                  <List pl={6}>
+                    {menuItem.children &&
+                      menuItem.children.map((child, childIndex) => (
+                        <ListItem display="flex" key={childIndex}>
+                          <MenuLink {...child} />
+                        </ListItem>
+                      ))}
+                  </List>
+                )}
+              </ListItem>
+            ))}
           </List>
           <Box
             onClick={onClose}
