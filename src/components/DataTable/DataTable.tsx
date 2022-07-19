@@ -161,7 +161,7 @@ function DataTable({
                   );
                 })}
               </Tbody>
-            )}{" "}
+            )}
           </Table>
         </PerfectScrollbar>
       </Box>
