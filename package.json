@@ -50,6 +50,7 @@
     "react-table": "^7.7.0",
     "react-toastify": "^9.0.3",
     "styled-jsx": "^5.0.2",
+    "usehooks-ts": "^2.6.0",
     "utility-types": "^3.10.0",
     "yup": "^0.32.11",
     "yup-locale-pt": "^0.0.9"

@@ -42,6 +42,8 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 - [x] Git hooks
 - [x] Perfect scrollbar
 - [x] Mjml
+- [x] useHooks Typescript
+- [x] Utility Types
 - [ ] Code Generator
 
 ## Getting Started

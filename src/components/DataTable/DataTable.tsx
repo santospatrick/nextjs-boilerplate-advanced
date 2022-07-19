@@ -1,4 +1,4 @@
-import useDebounce from "@/hooks/useDebounce";
+import { useDebounce } from "usehooks-ts";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Table,
