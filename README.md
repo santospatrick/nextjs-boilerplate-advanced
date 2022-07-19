@@ -1,9 +1,30 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Instructions
+
+[![Slides.com template presentation](docs/slides.png)](https://slides.com/santospatrick/nextjs-chakraui-typescript)
+
+## Preview
+
+<img src="docs/preview.gif" width="575px" />
+
 ## Usage
+
+1. Initialize your project with this command:
+
 ```bash
 yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-advanced
 ```
+
+2. Duplicate `.env.example` to `.env.local` fulfilling variables as needed
+
+3. Run the following commands:
+```bash
+yarn install
+yarn dev # start development server
+```
+
+4. Done 🎉
 
 ## Features
 - [x] Authentication screens pre-built
