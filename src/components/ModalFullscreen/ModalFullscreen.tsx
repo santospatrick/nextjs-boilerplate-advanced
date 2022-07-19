@@ -21,6 +21,7 @@ import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
 type Props = Pick<ModalProps, "isOpen" | "onClose"> & {
   children: ReactNode;
   title?: string;
+  closeOnOverlayClick?: boolean;
 };
 
 function ModalFullscreen({
@@ -28,6 +29,7 @@ function ModalFullscreen({
   onClose,
   children,
   title = "Modal",
+  closeOnOverlayClick = false,
 }: Props) {
   const [isFullscreen, { toggle }] = useBoolean();
   return (
@@ -35,6 +37,7 @@ function ModalFullscreen({
       isOpen={isOpen}
       onClose={onClose}
       size={isFullscreen ? "full" : "md"}
+      closeOnOverlayClick={closeOnOverlayClick}
     >
       <ModalOverlay />
       <ModalContent>
