@@ -1,0 +1,62 @@
+import InputText from "@/components/inputs/InputText";
+import { Button } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  useImperativeHandle,
+} from "react";
+import { SubmitHandler, useForm, UseFormSetError } from "react-hook-form";
+import schema from "./schema";
+
+export type FormValues = {
+  text: string;
+};
+
+type Props = {
+  onSubmit: SubmitHandler<FormValues>;
+  defaultValues?: Partial<FormValues>;
+};
+
+export type {{pascalCase name}}FormRef = {
+  setError: UseFormSetError<FormValues>;
+};
+
+const {{pascalCase name}}Form: ForwardRefRenderFunction<{{pascalCase name}}FormRef, Props> = (
+  { onSubmit, defaultValues },
+  ref
+) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting },
+    setError,
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      text: "",
+      ...defaultValues,
+    },
+  });
+
+  useImperativeHandle(ref, () => ({
+    setError,
+  }));
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <InputText label="Text" name="text" control={control} />
+      <Button
+        mt={8}
+        colorScheme="twitter"
+        isLoading={isSubmitting}
+        type="submit"
+        isFullWidth={true}
+      >
+        Submit
+      </Button>
+    </form>
+  );
+};
+
+export default forwardRef({{pascalCase name}}Form);
