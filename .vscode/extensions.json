@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "attilabuti.vscode-mjml",
+        "dbaeumer.vscode-eslint",
+        "styled-components.vscode-styled-components"
+    ]
+}

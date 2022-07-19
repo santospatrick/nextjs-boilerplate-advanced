@@ -8,6 +8,7 @@ import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import UsernameForm from "@/components/forms/UsernameForm";
+import { format, parseISO } from "date-fns";
 
 function HomeTable() {
   const perPage = 5;
@@ -100,7 +101,8 @@ function HomeTable() {
       },
       {
         Header: "Created at",
-        accessor: (row: { created_at: Date }) => row.created_at,
+        accessor: (row: { created_at: string }) =>
+          format(parseISO(row.created_at), "Pp"),
         id: "created_at",
       },
       {

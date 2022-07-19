@@ -1,0 +1,44 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Barlow', 'Helvetica', 'Arial', sans-serif"></mj-all>
+      <mj-button background-color="#3700E3"></mj-button>
+    </mj-attributes>
+    <mj-font href="https://fonts.googleapis.com/css?family=Barlow:normal,italic,bold&display=swap" name="Barlow"></mj-font>
+  </mj-head>
+  <mj-body background-color="#F6F6F6">
+    <mj-section padding="0px">
+      <mj-column padding="0">
+        <mj-spacer height="32px"></mj-spacer>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#000" padding="30px">
+      <mj-column padding="0">
+        <mj-image align="left" padding="0px" src="https://pegadanatural.com.br/wp-content/uploads/logoipsum-logo-8.png" width="90px"></mj-image>
+        <mj-spacer height="12px"></mj-spacer>
+        <mj-text color="#fff" font-size="48px" padding="10px">
+          <strong>Email confirmed</strong>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#fff" padding-bottom="23px" padding-left="48px" padding-right="48px" padding-top="30px" padding="48px">
+      <mj-column padding="0">
+        <mj-text font-size="30px" line-height="1.5" padding="0px">
+          <strong>Your email has been confirmed successfully!</strong>
+        </mj-text>
+        <mj-spacer height="8px"></mj-spacer>
+        <mj-text font-size="20px" line-height="1.5" padding="0px">
+          Now your account is fully setup.
+        </mj-text>
+        <mj-spacer height="30px"></mj-spacer>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-bottom="32px" padding-left="48px" padding-right="48px" padding-top="32px" padding="48px">
+      <mj-column padding="0">
+        <mj-text align="center" color="#5C5C5C" font-size="14px" line-height="1.5" padding="0px">
+          Made with ❤️ by @santospatrick<br /><br /><span style="text-decoration: underline;">Unsubscribe</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

@@ -20,6 +20,8 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { useTable } from "react-table";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { Container } from "./styles";
 
 type Pagination = {
   total: number;
@@ -69,7 +71,7 @@ function DataTable({
   }, [debouncedSearchTerm, onSearchDebounced]);
 
   return (
-    <>
+    <Container>
       <Box
         w="100%"
         height="60px"
@@ -102,63 +104,67 @@ function DataTable({
           )}
         </InputGroup>
       </Box>
-      <Table {...getTableProps()}>
-        <Thead backgroundColor="#fff">
-          {headerGroups.map((headerGroup) => {
-            const { key, ...restHeaderGroupProps } =
-              headerGroup.getHeaderGroupProps();
-            return (
-              <Tr key={key} {...restHeaderGroupProps}>
-                {headerGroup.headers.map((column) => {
-                  const { key, ...restColumn } = column.getHeaderProps();
+      <Box width="100%" overflow="auto">
+        <PerfectScrollbar>
+          <Table {...getTableProps()}>
+            <Thead backgroundColor="#fff">
+              {headerGroups.map((headerGroup) => {
+                const { key, ...restHeaderGroupProps } =
+                  headerGroup.getHeaderGroupProps();
+                return (
+                  <Tr key={key} {...restHeaderGroupProps}>
+                    {headerGroup.headers.map((column) => {
+                      const { key, ...restColumn } = column.getHeaderProps();
+                      return (
+                        <Th key={key} {...restColumn}>
+                          {column.render("Header")}
+                        </Th>
+                      );
+                    })}
+                  </Tr>
+                );
+              })}
+            </Thead>
+            {isLoading ? (
+              <Tbody>
+                <Tr>
+                  <Td padding={0} colSpan={columns.length}>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      backgroundColor="#fff"
+                      height="325px"
+                      width="100%"
+                    >
+                      <CircularProgress isIndeterminate color="brand.600" />
+                    </Box>
+                  </Td>
+                </Tr>
+              </Tbody>
+            ) : (
+              <Tbody backgroundColor="#fff" {...getTableBodyProps}>
+                {rows.map((row) => {
+                  prepareRow(row);
+                  const { key, ...restRowProps } = row.getRowProps();
                   return (
-                    <Th key={key} {...restColumn}>
-                      {column.render("Header")}
-                    </Th>
+                    <Tr key={key} {...restRowProps}>
+                      {row.cells.map((cell) => {
+                        const { key, ...restCellProps } = cell.getCellProps();
+                        return (
+                          <Td key={key} {...restCellProps}>
+                            {cell.render("Cell")}
+                          </Td>
+                        );
+                      })}
+                    </Tr>
                   );
                 })}
-              </Tr>
-            );
-          })}
-        </Thead>
-        {isLoading ? (
-          <Tbody>
-            <Tr>
-              <Td padding={0} colSpan={columns.length}>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  backgroundColor="#fff"
-                  height="325px"
-                  width="100%"
-                >
-                  <CircularProgress isIndeterminate color="brand.600" />
-                </Box>
-              </Td>
-            </Tr>
-          </Tbody>
-        ) : (
-          <Tbody backgroundColor="#fff" {...getTableBodyProps}>
-            {rows.map((row) => {
-              prepareRow(row);
-              const { key, ...restRowProps } = row.getRowProps();
-              return (
-                <Tr key={key} {...restRowProps}>
-                  {row.cells.map((cell) => {
-                    const { key, ...restCellProps } = cell.getCellProps();
-                    return (
-                      <Td key={key} {...restCellProps}>
-                        {cell.render("Cell")}
-                      </Td>
-                    );
-                  })}
-                </Tr>
-              );
-            })}
-          </Tbody>
-        )}{" "}
-      </Table>
+              </Tbody>
+            )}
+          </Table>
+        </PerfectScrollbar>
+      </Box>
       <Box
         w="100%"
         height="60px"
@@ -199,7 +205,7 @@ function DataTable({
           />
         </Stack>
       </Box>
-    </>
+    </Container>
   );
 }
 

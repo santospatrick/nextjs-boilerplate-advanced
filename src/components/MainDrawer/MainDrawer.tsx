@@ -13,7 +13,6 @@ import {
   ListIcon,
   ListItem,
   Stack,
-  Text,
   Link,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -88,17 +87,32 @@ function MainDrawer({ onClose, isOpen }: Props) {
               </NextLink>
             </ListItem>
           </List>
-          <Box display="flex" p={4} borderTopWidth="1px" mt="auto">
+          <Box
+            onClick={onClose}
+            display="flex"
+            p={4}
+            borderTopWidth="1px"
+            mt="auto"
+          >
             <HStack spacing={4}>
-              <Avatar size="sm" />
+              <NextLink href="/me" passHref>
+                <a>
+                  <Avatar size="sm" />
+                </a>
+              </NextLink>
               <Box
                 display="flex"
                 flexDirection="column"
                 alignItems="flex-start"
               >
-                <Text fontSize="xs">{user?.username}</Text>
+                <NextLink href="/me" passHref>
+                  <Link fontSize="xs">{user?.username}</Link>
+                </NextLink>
                 <Link
-                  onClick={logout}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    logout();
+                  }}
                   as="button"
                   fontSize="10px"
                   color="brand.600"
