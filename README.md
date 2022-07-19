@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Preview
 
-<img src="docs/preview.gif" width="575px" />
+<img src="docs/preview.gif" width="400" />
 
 ## Usage
 
