@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "emails": "mjml ./emails/templates/*.mjml -o ./emails/dist"
+    "emails": "mjml ./emails/templates/*.mjml -o ./emails/dist",
+    "emails:watch": "mjml -w ./emails/templates/*.mjml -o ./emails/dist"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",

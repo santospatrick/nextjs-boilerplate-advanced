@@ -17,22 +17,22 @@
         <mj-image align="left" padding="0px" src="https://pegadanatural.com.br/wp-content/uploads/logoipsum-logo-8.png" width="90px"></mj-image>
         <mj-spacer height="12px"></mj-spacer>
         <mj-text color="#fff" font-size="48px" padding="10px">
-          <strong>Welcome</strong>
+          <strong>Verify email</strong>
         </mj-text>
       </mj-column>
     </mj-section>
     <mj-section background-color="#fff" padding-bottom="23px" padding-left="48px" padding-right="48px" padding-top="30px" padding="48px">
       <mj-column padding="0">
         <mj-text font-size="30px" line-height="1.5" padding="0px">
-          <strong>Your account has been created successfully!</strong>
+          <strong>You need to confirm your account</strong>
         </mj-text>
         <mj-spacer height="8px"></mj-spacer>
         <mj-text font-size="20px" line-height="1.5" padding="0px">
-          You can access the app at any time with your log in information.
+          In order to access all features from the app, you will need to confirm your email in the link below.
         </mj-text>
         <mj-spacer height="40px"></mj-spacer>
         <mj-button background-color="#000" align="left" border-radius="0px" font-size="20px" line-height="1.5" padding="0px" href="https://google.com">
-          <strong>Access it now!</strong>
+          <strong>Confirm email</strong>
         </mj-button>
         <mj-spacer height="30px"></mj-spacer>
       </mj-column>
