@@ -27,6 +27,8 @@ yarn dev # start development server
 4. Done 🎉
 
 ## Features
+
+### `v1`
 - [x] Authentication screens pre-built
 - [x] Server side rendering
 - [x] Forms (compatible with `react-hook-form`)
@@ -47,7 +49,9 @@ yarn dev # start development server
 - [x] Profile page for user editing
 - [x] Collapsable & nested menu
 - [x] Code Generator
-- [ ] Advanced filter for data tables
+
+### `v2`
+- [ ] Advanced filter for data tables (like Notion)
 - [ ] Form builder
 
 ## Technologies
