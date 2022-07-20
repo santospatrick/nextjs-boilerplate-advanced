@@ -134,7 +134,7 @@ function DataTable({
                       alignItems="center"
                       justifyContent="center"
                       backgroundColor="#fff"
-                      height="325px"
+                      height="364px"
                       width="100%"
                     >
                       <CircularProgress isIndeterminate color="brand.600" />

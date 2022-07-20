@@ -1,5 +1,5 @@
 import DataTable from "@/components/DataTable";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
 import { useCallback, useMemo, useState } from "react";
 import { HStack, IconButton, Stack } from "@chakra-ui/react";
@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import UsernameForm from "@/components/forms/UsernameForm";
 import { format, parseISO } from "date-fns";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 function HomeTable() {
   const perPage = 5;
@@ -16,7 +17,11 @@ function HomeTable() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentCell, setCurrentCell] = useState(null);
   const [currentText, setCurrentText] = useState("");
+  const [idToDelete, setIdToDelete] = useState<number | null>(null);
   const queryClient = useQueryClient();
+  const { mutateAsync, isLoading: isLoadingDeletion } = useMutation(() =>
+    api.delete(`/user/${idToDelete}`)
+  );
 
   const {
     data: users,
@@ -118,7 +123,7 @@ function HomeTable() {
             <IconButton
               aria-label={"Edit user"}
               onClick={() => {
-                api.delete(`users/${data.cell.row.original.id}`);
+                setIdToDelete(data.cell.row.original.id);
               }}
               icon={<MdDelete size={22} />}
             />
@@ -133,6 +138,13 @@ function HomeTable() {
     setSearchTerm(searchTerm);
   }, []);
 
+  const onConfirmDeletion = async () => {
+    await mutateAsync();
+    queryClient.invalidateQueries(["user", page, searchTerm]);
+    setIdToDelete(null);
+    toast.success("User deleted successfully!");
+  };
+
   if (error) {
     return (
       <div>
@@ -142,17 +154,25 @@ function HomeTable() {
   }
 
   return (
-    <DataTable
-      columns={columns}
-      data={users?.data}
-      pagination={users?.pagination}
-      page={page}
-      onChangePage={setPage}
-      perPage={perPage}
-      isLoading={isLoading}
-      onSearchDebounced={onSearchDebounced}
-      inputPlaceholder="Search by username, email..."
-    />
+    <>
+      <ConfirmDialog
+        isOpen={!!idToDelete}
+        onConfirm={onConfirmDeletion}
+        onClose={() => setIdToDelete(null)}
+        isLoading={isLoadingDeletion}
+      />
+      <DataTable
+        columns={columns}
+        data={users?.data}
+        pagination={users?.pagination}
+        page={page}
+        onChangePage={setPage}
+        perPage={perPage}
+        isLoading={isLoading}
+        onSearchDebounced={onSearchDebounced}
+        inputPlaceholder="Search by username, email..."
+      />
+    </>
   );
 }
 
