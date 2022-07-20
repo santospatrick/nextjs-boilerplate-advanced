@@ -1,21 +1,21 @@
 import { Box, useBoolean } from "@chakra-ui/react";
 import { ComponentMeta } from "@storybook/react";
 import { useState } from "react";
-import UsernameForm from "../forms/UsernameForm";
+import InlineEditForm from "@/examples/InlineEditForm";
 import InlineEdit from "./InlineEdit";
 
 export const Primary = () => {
   const [isEditing, { on, off }] = useBoolean();
-  const [form, setForm] = useState({ username: "santospatrick" });
+  const [form, setForm] = useState({ email: "santospatrick@email.com" });
 
   return (
     <>
       <InlineEdit
         isEditing={isEditing}
         onClickEdit={on}
-        value={form.username}
+        value={form.email}
         FormComponent={
-          <UsernameForm
+          <InlineEditForm
             onSubmit={(values) => {
               setForm(values);
               off();
