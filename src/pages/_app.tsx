@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
       <AuthProvider>
         <ChakraProvider theme={theme}>
           <QueryClientProvider client={queryClient}>

@@ -49,6 +49,7 @@ yarn dev # start development server
 - [x] Profile page for user editing
 - [x] Collapsable & nested menu
 - [x] Code Generator (component, form, and page)
+- [X] VSCode debug setup
 
 ### `v2`
 - [ ] Advanced filter for data tables (like Notion)

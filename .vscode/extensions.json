@@ -2,6 +2,8 @@
     "recommendations": [
         "attilabuti.vscode-mjml",
         "dbaeumer.vscode-eslint",
-        "styled-components.vscode-styled-components"
+        "styled-components.vscode-styled-components",
+        "willstakayama.vscode-nextjs-snippets",
+        "dsznajder.es7-react-js-snippets"
     ]
 }
