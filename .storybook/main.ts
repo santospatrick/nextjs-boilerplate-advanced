@@ -1,6 +1,7 @@
+import type { StorybookConfig } from '@storybook/core-common';
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-module.exports = {
+const config: StorybookConfig = {
   "stories": [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
@@ -20,7 +21,9 @@ module.exports = {
     emotionAlias: false
   },
   webpackFinal: async (config) => {
-    config.resolve.plugins = [new TsconfigPathsPlugin()];
+    (config.resolve as any).plugins = [new TsconfigPathsPlugin()];
     return config;
   }
 }
+
+module.exports = config;
