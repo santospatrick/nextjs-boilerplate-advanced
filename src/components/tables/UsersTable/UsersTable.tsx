@@ -2,8 +2,8 @@ import DataTable from "@/components/DataTable";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
 import { useCallback, useMemo, useState } from "react";
-import { HStack, IconButton, Stack, useBoolean } from "@chakra-ui/react";
-import { MdArrowRightAlt, MdDelete, MdEdit } from "react-icons/md";
+import { HStack, IconButton, useBoolean } from "@chakra-ui/react";
+import { MdArrowRightAlt, MdDelete } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -14,6 +14,7 @@ import ModalFullscreen from "@/components/ModalFullscreen";
 import UsersFilterForm from "@/components/forms/UsersFilterForm";
 import { SubmitHandler } from "react-hook-form";
 import { FormValues } from "@/components/forms/UsersFilterForm/UsersFilterForm";
+import InlineEdit from "@/components/InlineEdit";
 
 function HomeTable() {
   const perPage = 5;
@@ -57,9 +58,15 @@ function HomeTable() {
       {
         Header: "Username",
         accessor: "username",
-        Cell: (data: any) => {
-          if (currentCell === data.cell.row.original.id) {
-            return (
+        Cell: (data: any) => (
+          <InlineEdit
+            isEditing={currentCell === data.cell.row.original.id}
+            onClickEdit={() => {
+              setCurrentCell(data.cell.row.original.id);
+              setCurrentText(data.value);
+            }}
+            value={data.value}
+            FormComponent={
               <UsernameForm
                 onSubmit={(values) => {
                   api
@@ -70,7 +77,7 @@ function HomeTable() {
                       toast.error("Couldn't edit user, try again later");
                     });
                   queryClient.setQueryData(
-                    ["user", page, searchTerm],
+                    ["user", page, searchTerm, applitedFilters],
                     (old: Partial<UserResponse> | undefined) => {
                       return {
                         ...old,
@@ -88,24 +95,9 @@ function HomeTable() {
                 defaultValues={{ username: currentText }}
                 onEscapeKeypress={onEscapeKeypress}
               />
-            );
-          }
-          return (
-            <Stack alignItems="center" direction="row">
-              <p>{data.value}</p>
-              <IconButton
-                onClick={() => {
-                  setCurrentCell(data.cell.row.original.id);
-                  setCurrentText(data.value);
-                }}
-                variant="outline"
-                aria-label="Edit table cell"
-                icon={<MdEdit />}
-                size="sm"
-              />
-            </Stack>
-          );
-        },
+            }
+          />
+        ),
       },
       {
         Header: "Email",
@@ -138,7 +130,15 @@ function HomeTable() {
         ),
       },
     ],
-    [currentCell, currentText, onEscapeKeypress, page, queryClient, searchTerm]
+    [
+      applitedFilters,
+      currentCell,
+      currentText,
+      onEscapeKeypress,
+      page,
+      queryClient,
+      searchTerm,
+    ]
   );
 
   const onSearchDebounced = useCallback((searchTerm: string) => {

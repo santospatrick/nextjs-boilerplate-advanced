@@ -49,6 +49,7 @@ function UsernameForm({ onSubmit, defaultValues, onEscapeKeypress }: Props) {
           type="text"
           name="username"
           control={control}
+          helperText="Use 'esc' key to cancel editing"
         />
         <InputRightElement>
           <IconButton

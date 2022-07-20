@@ -5,14 +5,14 @@ import { MdEdit } from "react-icons/md";
 type Props = {
   isEditing: boolean;
   FormComponent: ReactElement;
-  defaultValue: string;
+  value: string;
   onClickEdit: () => void;
 };
 
 const InlineEdit = ({
   isEditing,
   FormComponent,
-  defaultValue,
+  value,
   onClickEdit,
 }: Props) => {
   if (isEditing) {
@@ -20,7 +20,7 @@ const InlineEdit = ({
   }
   return (
     <Stack alignItems="center" direction="row">
-      <p>{defaultValue}</p>
+      <p>{value}</p>
       <IconButton
         onClick={onClickEdit}
         variant="outline"

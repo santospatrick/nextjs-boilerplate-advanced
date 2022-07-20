@@ -13,7 +13,7 @@ export const Primary = () => {
       <InlineEdit
         isEditing={isEditing}
         onClickEdit={on}
-        defaultValue={form.username}
+        value={form.username}
         FormComponent={
           <UsernameForm
             onSubmit={(values) => {
