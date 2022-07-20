@@ -10,6 +10,7 @@ import { FormValues } from "@/components/forms/UserForm";
 import { useRouter } from "next/router";
 import omit from "lodash.omit";
 import { UserFormRefType } from "@/components/forms/UserForm/UserForm";
+import { toast } from "react-toastify";
 
 type Props = {
   data: UserData;
@@ -24,9 +25,10 @@ const UserId: NextPageWithLayout<Props> = ({ data }) => {
   const formRef = useRef<UserFormRefType>(null);
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    const apiValues = omit(values, ["confirmPassword"]);
+    const apiValues = omit(values, ["confirmPassword", "id", "created_at"]);
     try {
       const { data } = await api.post<AxiosResponseData>("user", apiValues);
+      toast.success("User created succesfully!");
       router.push(`/users/${data.newUser.id}`);
     } catch (error) {
       httpErrorHandler(error, formRef.current?.setError);
