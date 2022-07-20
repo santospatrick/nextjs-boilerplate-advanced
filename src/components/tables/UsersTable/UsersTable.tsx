@@ -16,7 +16,7 @@ import { SubmitHandler } from "react-hook-form";
 import { FormValues } from "@/components/forms/UsersFilterForm/UsersFilterForm";
 import InlineEdit from "@/components/InlineEdit";
 
-function HomeTable() {
+function UsersTable() {
   const perPage = 5;
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -203,4 +203,4 @@ function HomeTable() {
   );
 }
 
-export default HomeTable;
+export default UsersTable;
