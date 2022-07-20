@@ -33,7 +33,7 @@ module.exports = function (plop) {
       {
         type: "input",
         name: "name",
-        message: "Enter your component name:",
+        message: "Enter your form name:",
       },
     ],
     actions: [
@@ -51,6 +51,24 @@ module.exports = function (plop) {
         type: "add",
         path: "../src/components/forms/{{pascalCase name}}Form/schema.ts",
         templateFile: "templates/form/schema.ts.hbs",
+      },
+    ],
+  });
+
+  plop.setGenerator("page", {
+    description: "New page with layout",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "Enter your page name (which will also be the url):",
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "../src/pages/{{kebabCase name}}.tsx",
+        templateFile: "templates/page/component.tsx.hbs",
       },
     ],
   });

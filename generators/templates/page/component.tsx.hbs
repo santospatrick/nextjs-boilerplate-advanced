@@ -1,0 +1,14 @@
+import React, { ReactElement } from "react";
+import { NextPageWithLayout } from "./_app";
+
+type Props = unknown;
+
+const {{pascalCase name}}: NextPageWithLayout<Props> = () => {
+  return <div>{{kebabCase name}}</div>;
+};
+
+{{pascalCase name}}.getLayout = (app: ReactElement) => {
+  return <div>{app}</div>;
+};
+
+export default {{pascalCase name}};
