@@ -31,7 +31,7 @@ const ConfirmDialog = ({ isOpen, onClose, onConfirm, isLoading }: Props) => {
           <Button mr={3} variant="ghost" onClick={onClose}>
             Cancel
           </Button>
-          <Button isLoading={isLoading} onClick={onConfirm} colorScheme="brand">
+          <Button isLoading={isLoading} onClick={onConfirm} colorScheme="red">
             Confirm
           </Button>
         </ModalFooter>
