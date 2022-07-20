@@ -1,12 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Instructions
-
-[![Slides.com template presentation](docs/slides.png)](https://slides.com/santospatrick/nextjs-chakraui-typescript)
-
-## Preview
-
-<img src="docs/preview.gif" width="576" />
+# `santospatrick/nextjs-boilerplate-advanced`
+> Next.js boilerplate made with Chakra-UI + Typescript + React-table + React-hook-form
 
 ## Usage
 
@@ -25,6 +18,15 @@ yarn dev # start development server
 ```
 
 4. Done 🎉
+
+## Instructions
+> How to get the most out of this boilerplate 🚀
+
+[![Slides.com template presentation](docs/slides.png)](https://slides.com/santospatrick/nextjs-chakraui-typescript)
+
+## Preview
+
+<img src="docs/preview.gif" width="576" />
 
 ## Features
 
