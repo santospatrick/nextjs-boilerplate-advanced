@@ -10,6 +10,9 @@ yarn create next-app -e https://github.com/santospatrick/nextjs-boilerplate-adva
 ```
 
 2. Duplicate `.env.example` to `.env.local` fulfilling variables as needed
+```bash
+cp .env.example .env.local
+```
 
 3. Run the following commands:
 ```bash
