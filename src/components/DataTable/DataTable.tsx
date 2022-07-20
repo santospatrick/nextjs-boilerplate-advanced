@@ -16,9 +16,10 @@ import {
   InputLeftElement,
   InputRightElement,
   Icon,
+  HStack,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
-import { MdSearch } from "react-icons/md";
+import { MdFilterList, MdSearch } from "react-icons/md";
 import { useTable } from "react-table";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Container } from "./styles";
@@ -40,6 +41,7 @@ type Props = {
   isLoading: boolean;
   onSearchDebounced?: (search: string) => any;
   inputPlaceholder?: string;
+  onClickFilter?: () => void;
 };
 
 function DataTable({
@@ -52,6 +54,7 @@ function DataTable({
   isLoading,
   onSearchDebounced,
   inputPlaceholder = "",
+  onClickFilter = () => null,
 }: Props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
@@ -83,26 +86,34 @@ function DataTable({
         color="gray.600"
         fontSize="sm"
       >
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={MdSearch} fontSize="xl" />
-          </InputLeftElement>
-          <Input
-            variant="outline"
-            width="100%"
-            onChange={(event) => {
-              setIsSearching(true);
-              setSearchTerm(event.target.value);
-            }}
-            value={searchTerm}
-            placeholder={inputPlaceholder}
+        <HStack width="100%">
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <Icon as={MdSearch} fontSize="xl" />
+            </InputLeftElement>
+            <Input
+              variant="outline"
+              width="100%"
+              onChange={(event) => {
+                setIsSearching(true);
+                setSearchTerm(event.target.value);
+              }}
+              value={searchTerm}
+              placeholder={inputPlaceholder}
+            />
+            {isSearching && (
+              <InputRightElement>
+                <CircularProgress size={6} isIndeterminate color="brand.600" />
+              </InputRightElement>
+            )}
+          </InputGroup>
+          <IconButton
+            onClick={onClickFilter}
+            aria-label="Toggle filter visibility"
+            icon={<MdFilterList />}
+            fontSize="20px"
           />
-          {isSearching && (
-            <InputRightElement>
-              <CircularProgress size={6} isIndeterminate color="brand.600" />
-            </InputRightElement>
-          )}
-        </InputGroup>
+        </HStack>
       </Box>
       <Box width="100%" overflow="auto">
         <PerfectScrollbar>

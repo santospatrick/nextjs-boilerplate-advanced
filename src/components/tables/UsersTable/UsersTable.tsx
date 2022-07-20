@@ -2,7 +2,7 @@ import DataTable from "@/components/DataTable";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "@/services/api";
 import { useCallback, useMemo, useState } from "react";
-import { HStack, IconButton, Stack } from "@chakra-ui/react";
+import { HStack, IconButton, Stack, useBoolean } from "@chakra-ui/react";
 import { MdArrowRightAlt, MdDelete, MdEdit } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
@@ -10,6 +10,10 @@ import Link from "next/link";
 import UsernameForm from "@/components/forms/UsernameForm";
 import { format, parseISO } from "date-fns";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import ModalFullscreen from "@/components/ModalFullscreen";
+import UsersFilterForm from "@/components/forms/UsersFilterForm";
+import { SubmitHandler } from "react-hook-form";
+import { FormValues } from "@/components/forms/UsersFilterForm/UsersFilterForm";
 
 function HomeTable() {
   const perPage = 5;
@@ -18,6 +22,8 @@ function HomeTable() {
   const [currentCell, setCurrentCell] = useState(null);
   const [currentText, setCurrentText] = useState("");
   const [idToDelete, setIdToDelete] = useState<number | null>(null);
+  const [isFilterOpen, { on, off }] = useBoolean();
+  const [applitedFilters, setApplitedFilters] = useState({});
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading: isLoadingDeletion } = useMutation(() =>
     api.delete(`/user/${idToDelete}`)
@@ -27,7 +33,7 @@ function HomeTable() {
     data: users,
     isLoading,
     error,
-  } = useQuery(["user", page, searchTerm], () =>
+  } = useQuery(["user", page, searchTerm, applitedFilters], () =>
     api
       .get("user", {
         params: {
@@ -35,6 +41,7 @@ function HomeTable() {
           page,
           perPage,
           order: "created_at",
+          ...applitedFilters,
         },
       })
       .then((response) => response.data)
@@ -145,6 +152,18 @@ function HomeTable() {
     toast.success("User deleted successfully!");
   };
 
+  const onSubmitFilters: SubmitHandler<FormValues> = (values) => {
+    setPage(1);
+    setApplitedFilters(values);
+    off();
+  };
+
+  const onClearFilters = () => {
+    setPage(1);
+    setApplitedFilters({});
+    off();
+  };
+
   if (error) {
     return (
       <div>
@@ -155,6 +174,13 @@ function HomeTable() {
 
   return (
     <>
+      <ModalFullscreen title="Filters" isOpen={isFilterOpen} onClose={off}>
+        <UsersFilterForm
+          onClearFilters={onClearFilters}
+          onSubmit={onSubmitFilters}
+          defaultValues={applitedFilters}
+        />
+      </ModalFullscreen>
       <ConfirmDialog
         isOpen={!!idToDelete}
         onConfirm={onConfirmDeletion}
@@ -171,6 +197,7 @@ function HomeTable() {
         isLoading={isLoading}
         onSearchDebounced={onSearchDebounced}
         inputPlaceholder="Search by username, email..."
+        onClickFilter={on}
       />
     </>
   );
