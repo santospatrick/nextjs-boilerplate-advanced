@@ -2,7 +2,8 @@
 > Next.js boilerplate made with Chakra-UI + Typescript + React-table + React-hook-form
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0e6e63e0-f1fe-44f0-baf2-253db63e4d79/deploy-status)](https://app.netlify.com/sites/magnificent-sfogliatella-ad53dd/deploys)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+![eslint](https://img.shields.io/badge/eslint-3A33D1?style=flat&logo=eslint&logoColor=white)
+![prettier](https://img.shields.io/badge/prettier-1A2C34?style=flat&logo=prettier&logoColor=F7BA3E)
 ![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white)
 
