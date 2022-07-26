@@ -1,6 +1,13 @@
 # `santospatrick/nextjs-boilerplate-advanced`
 > Next.js boilerplate made with Chakra-UI + Typescript + React-table + React-hook-form
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0e6e63e0-f1fe-44f0-baf2-253db63e4d79/deploy-status)](https://app.netlify.com/sites/magnificent-sfogliatella-ad53dd/deploys)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
+[Live Demo](https://sample-nextjs-app.santospatrick.com)
+
+<img src="docs/preview.gif" width="576" />
+
 ## Usage
 
 1. Initialize your project with this command:
@@ -26,10 +33,6 @@ yarn dev # start development server
 > How to get the most out of this boilerplate 🚀
 
 [![Slides.com template presentation](docs/slides.png)](https://slides.com/santospatrick/nextjs-chakraui-typescript)
-
-## Preview
-
-<img src="docs/preview.gif" width="576" />
 
 ## Features
 
