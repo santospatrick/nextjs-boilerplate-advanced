@@ -23,9 +23,12 @@ type SigninValues = {
 
 type User = {
   id: string;
-  username: string;
   email: string;
+  remember_me_token: null;
+  name: string;
   created_at: string;
+  updated_at: string;
+  status: boolean;
 };
 
 export function AuthProvider({ children }: Props) {
@@ -35,23 +38,22 @@ export function AuthProvider({ children }: Props) {
   useEffect(() => {
     const { "nextjs-boilerplate-advanced.token": token } = parseCookies();
     if (token) {
-      api.get("auth/me").then(({ data }) => {
+      api.get("me").then(({ data }) => {
         setUser(data);
       });
     }
   }, []);
 
   async function signIn(values: SigninValues) {
-    const { data } = await api.post("/auth/login", values);
+    const { data } = await api.post("/login", values);
 
-    const {
-      user,
-      access_token: { token },
-    } = data;
+    const { token } = data;
 
     setCookie(undefined, "nextjs-boilerplate-advanced.token", token);
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    const { data: user } = await api.get("me");
 
     setUser(user);
 

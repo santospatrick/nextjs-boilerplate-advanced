@@ -27,7 +27,7 @@ const UserId: NextPageWithLayout<Props> = ({ data }) => {
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     const apiValues = omit(values, ["confirmPassword", "id", "created_at"]);
     try {
-      const { data } = await api.post<AxiosResponseData>("user", apiValues);
+      const { data } = await api.post<AxiosResponseData>("users", apiValues);
       toast.success("User created succesfully!");
       router.push(`/users/${data.newUser.id}`);
     } catch (error) {

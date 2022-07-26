@@ -103,7 +103,7 @@ function MainDrawer({ onClose, isOpen }: Props) {
                 alignItems="flex-start"
               >
                 <NextLink href="/me" passHref>
-                  <Link fontSize="xs">{user?.username}</Link>
+                  <Link fontSize="xs">{user?.name}</Link>
                 </NextLink>
                 <Link
                   onClick={(event) => {

@@ -3,7 +3,7 @@ import { setupYup } from "@/config/yup";
 const Yup = setupYup();
 
 const schema = Yup.object({
-  username: Yup.string().required(),
+  name: Yup.string().required(),
   email: Yup.string().email().required(),
   password: Yup.string().required(),
   confirmPassword: Yup.string().oneOf(

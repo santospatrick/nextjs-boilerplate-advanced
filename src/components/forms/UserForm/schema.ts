@@ -7,7 +7,7 @@ const schema = (id: string | undefined) =>
     id
       ? {
           email: Yup.string().required(),
-          username: Yup.string().required(),
+          name: Yup.string().required(),
           password: Yup.string(),
           confirmPassword: Yup.string().oneOf(
             [Yup.ref("password"), null],
@@ -16,7 +16,7 @@ const schema = (id: string | undefined) =>
         }
       : {
           email: Yup.string().required(),
-          username: Yup.string().required(),
+          name: Yup.string().required(),
           password: Yup.string().required(),
           confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match")

@@ -48,7 +48,6 @@ const UpdatePasswordForm: ForwardRefRenderFunction<
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack spacing={2}>
-        <InputText type="email" label="Email" name="email" control={control} />
         <InputText
           type="password"
           label="Password"

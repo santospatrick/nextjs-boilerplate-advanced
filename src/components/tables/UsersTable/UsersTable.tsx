@@ -7,7 +7,7 @@ import { MdArrowRightAlt, MdDelete } from "react-icons/md";
 import { UserResponse } from "@/typings/user";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import UsernameForm from "@/components/forms/UsernameForm";
+import NameForm from "@/components/forms/NameForm";
 import { format, parseISO } from "date-fns";
 import ConfirmDialog from "@/components/ConfirmDialog";
 import ModalFullscreen from "@/components/ModalFullscreen";
@@ -27,7 +27,7 @@ function UsersTable() {
   const [applitedFilters, setApplitedFilters] = useState({});
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading: isLoadingDeletion } = useMutation(() =>
-    api.delete(`/user/${idToDelete}`)
+    api.delete(`/users/${idToDelete}`)
   );
 
   const {
@@ -36,12 +36,13 @@ function UsersTable() {
     error,
   } = useQuery(["user", page, searchTerm, applitedFilters], () =>
     api
-      .get("user", {
+      .get("users", {
         params: {
           q: searchTerm,
           page,
           perPage,
           order: "created_at",
+          status: true,
           ...applitedFilters,
         },
       })
@@ -56,8 +57,8 @@ function UsersTable() {
   const columns = useMemo(
     () => [
       {
-        Header: "Username",
-        accessor: "username",
+        Header: "Name",
+        accessor: "name",
         Cell: (data: any) => (
           <InlineEdit
             isEditing={currentCell === data.cell.row.original.id}
@@ -67,11 +68,11 @@ function UsersTable() {
             }}
             value={data.value}
             FormComponent={
-              <UsernameForm
+              <NameForm
                 onSubmit={(values) => {
                   api
-                    .put(`user/${currentCell}`, {
-                      username: values.username,
+                    .put(`users/${currentCell}`, {
+                      name: values.name,
                     })
                     .catch(() => {
                       toast.error("Couldn't edit user, try again later");
@@ -83,7 +84,7 @@ function UsersTable() {
                         ...old,
                         data: old?.data?.map((data) =>
                           data.id === currentCell
-                            ? { ...data, username: values.username }
+                            ? { ...data, name: values.name }
                             : data
                         ),
                       };
@@ -92,7 +93,7 @@ function UsersTable() {
                   setCurrentCell(null);
                   setCurrentText("");
                 }}
-                defaultValues={{ username: currentText }}
+                defaultValues={{ name: currentText }}
                 onEscapeKeypress={onEscapeKeypress}
               />
             }
@@ -105,9 +106,9 @@ function UsersTable() {
       },
       {
         Header: "Created at",
-        accessor: (row: { created_at: string }) =>
-          format(parseISO(row.created_at), "Pp"),
-        id: "created_at",
+        accessor: (row: { createdAt: string }) =>
+          format(parseISO(row.createdAt), "Pp"),
+        id: "createdAt",
       },
       {
         Header: "Actions",
