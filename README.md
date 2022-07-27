@@ -8,7 +8,7 @@
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white)
 
 - [Live Demo](https://sample-nextjs-app.santospatrick.com)
-- [Storybook Demo](https://main--62e026728257731cc216761f.chromatic.com)
+- [Storybook Demo](https://main--62e089a345749171c6216585.chromatic.com/)
 
 <img src="docs/preview.gif" width="576" />
 
