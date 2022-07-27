@@ -1,10 +1,11 @@
 import { ApiPagination } from "./api";
 
 export type UserData = {
-  created_at: string;
+  createdAt: string;
   email: string;
   id: string;
-  username: string;
+  name: string;
+  status: boolean;
 };
 
 export type UserResponse = {

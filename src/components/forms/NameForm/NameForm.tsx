@@ -7,7 +7,7 @@ import { MdCheck } from "react-icons/md";
 import schema from "./schema";
 
 type FormValues = {
-  username: string;
+  name: string;
 };
 
 type Props = {
@@ -20,7 +20,7 @@ function UsernameForm({ onSubmit, defaultValues, onEscapeKeypress }: Props) {
   const { handleSubmit, control, reset } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      username: "",
+      name: "",
       ...defaultValues,
     },
   });
@@ -47,7 +47,7 @@ function UsernameForm({ onSubmit, defaultValues, onEscapeKeypress }: Props) {
           autoFocus
           autoComplete="off"
           type="text"
-          name="username"
+          name="name"
           control={control}
           helperText="Use 'esc' key to cancel editing"
         />

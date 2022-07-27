@@ -13,7 +13,7 @@ const Index: NextPageWithLayout = () => {
     <Container maxWidth="1400px" m="auto" py={10}>
       <Text align="center">Dashboard!</Text>
       <Text align="center">
-        Logged in as: {user?.username} ({user?.email})
+        Logged in as: {user?.name} ({user?.email})
       </Text>
     </Container>
   );

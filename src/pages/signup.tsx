@@ -18,11 +18,10 @@ function Register() {
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     try {
-      await api.post("/auth/register", {
-        username: values.username,
+      await api.post("/register", {
+        name: values.name,
         email: values.email,
         password: values.password,
-        profile_id: 2,
       });
       toast.success("Account created succesfully!");
       router.push("/login");

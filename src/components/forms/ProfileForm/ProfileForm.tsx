@@ -37,11 +37,12 @@ const ProfileForm: ForwardRefRenderFunction<ProfileFormRefType, Props> = (
   const { handleSubmit, control, setError, setValue } = useForm({
     defaultValues: {
       id: "",
-      created_at: "",
+      createdAt: "",
       email: "",
-      username: "",
+      name: "",
       password: "",
       confirmPassword: "",
+      status: true,
       ...defaultValues,
     },
     resolver: yupResolver(schema),
@@ -60,7 +61,7 @@ const ProfileForm: ForwardRefRenderFunction<ProfileFormRefType, Props> = (
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <InputText label="Username" name="username" control={control} />
+      <InputText label="Name" name="name" control={control} />
       <InputText label="Email" type="email" name="email" control={control} />
       <InputText
         type="password"

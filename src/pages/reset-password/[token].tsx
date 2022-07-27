@@ -9,19 +9,22 @@ import { useRef } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import logo from "@/assets/logo.svg";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-function UpdatePassword() {
+function ResetPassword() {
   const ref = useRef<UpdatePasswordFormRefType>(null);
+  const { query, push } = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    const token = await api.get(`/auth/get-token?${values.email}`);
     try {
-      await api.post("/auth/update-password", {
-        token: token,
+      await api.post("update-password", {
+        token: query.token,
         password: values.newPassword,
       });
 
       toast.success("Password updated successfully!");
+      push("/login");
     } catch (error: unknown) {
       httpErrorHandler(error, ref.current?.setError);
     }
@@ -31,7 +34,11 @@ function UpdatePassword() {
     <Container m="auto" maxW="container.sm">
       <Box py={10}>
         <Box mb={10} display="flex" justifyContent="center">
-          <Image src={logo} alt="Logoipsum" />
+          <Link href="/login" passHref>
+            <a>
+              <Image src={logo} alt="Logoipsum" />
+            </a>
+          </Link>
         </Box>
         <Center>
           <Heading size="md">New password</Heading>
@@ -42,4 +49,4 @@ function UpdatePassword() {
   );
 }
 
-export default UpdatePassword;
+export default ResetPassword;

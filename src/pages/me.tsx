@@ -21,7 +21,7 @@ const Me: NextPageWithLayout = ({ data }) => {
     removeEmptyValues(values);
     const apiValues = omit(values, ["id", "created_at", "confirmPassword"]);
     try {
-      await api.put(`/user/${values.id}`, apiValues);
+      await api.put(`/users/${values.id}`, apiValues);
     } catch (error) {
       httpErrorHandler(error, formRef.current?.setError);
     }
@@ -40,7 +40,7 @@ const Me: NextPageWithLayout = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const api = getAPIClient(ctx);
-  const { data } = await api.get("auth/me");
+  const { data } = await api.get("me");
 
   return {
     props: {

@@ -10,7 +10,7 @@ import { SubmitHandler, useForm, UseFormSetError } from "react-hook-form";
 import schema from "./schema";
 
 export type FormValues = {
-  username: string;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -36,7 +36,7 @@ const RegisterForm: ForwardRefRenderFunction<RegisterFormRefType, Props> = (
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -50,12 +50,7 @@ const RegisterForm: ForwardRefRenderFunction<RegisterFormRefType, Props> = (
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack spacing={2}>
-        <InputText
-          type="text"
-          label="Username"
-          name="username"
-          control={control}
-        />
+        <InputText type="text" label="Name" name="name" control={control} />
         <InputText type="email" label="Email" name="email" control={control} />
         <InputText
           type="password"
