@@ -48,12 +48,12 @@ const ForgetPasswordForm: ForwardRefRenderFunction<
       </Stack>
       <Button
         mt={2}
-        colorScheme="twitter"
+        colorScheme="brand"
         isLoading={isSubmitting}
         type="submit"
         isFullWidth={true}
       >
-        Submit
+        Reset password
       </Button>
     </form>
   );

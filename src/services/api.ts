@@ -24,10 +24,11 @@ export const viacep = axios.create({
 type FieldErrorType = {
   field: string;
   message: string;
+  rule: string;
 };
 
 type ErrorResponse = {
-  error: FieldErrorType[];
+  errors: FieldErrorType[];
 };
 
 export const httpErrorHandler = (
@@ -40,7 +41,7 @@ export const httpErrorHandler = (
       return;
     }
 
-    const errorsList = (error.response?.data as ErrorResponse).error || [];
+    const errorsList = (error.response?.data as ErrorResponse).errors || [];
     errorsList.forEach((fieldError) => {
       const { field, message } = fieldError;
       if (setError) {

@@ -65,7 +65,7 @@ const LoginForm: ForwardRefRenderFunction<LoginFormRefType, Props> = (
       <Stack align={"center"}>
         <Button
           mt={8}
-          colorScheme="twitter"
+          colorScheme="brand"
           isLoading={isSubmitting}
           type="submit"
           isFullWidth={true}

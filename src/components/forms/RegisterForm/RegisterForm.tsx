@@ -67,7 +67,7 @@ const RegisterForm: ForwardRefRenderFunction<RegisterFormRefType, Props> = (
       </Stack>
       <Button
         mt={2}
-        colorScheme="twitter"
+        colorScheme="brand"
         isLoading={isSubmitting}
         type="submit"
         isFullWidth={true}

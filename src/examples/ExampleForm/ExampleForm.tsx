@@ -28,6 +28,7 @@ type User = {
 
 export type FormValues = {
   name: string;
+  password: string;
   email: string;
   birthdate: Date | string | undefined;
   documents: Pick<File, "name" | "size" | "type">[];
@@ -48,6 +49,7 @@ type Props = {
 
 const defaultValues = {
   name: "",
+  password: "",
   email: "",
   birthdate: undefined,
   documents: [],
@@ -109,6 +111,7 @@ const ExampleForm: ForwardRefRenderFunction<ExampleFormRef, Props> = (
     reset({
       ...defaultValues,
       name: "Patrick, Spongebob's BF",
+      password: "password",
       email: "admin@admin.com",
       birthdate: new Date(),
       documents: [
@@ -138,6 +141,12 @@ const ExampleForm: ForwardRefRenderFunction<ExampleFormRef, Props> = (
       </Button>
       <Stack spacing={2}>
         <InputText label="Name" name="name" control={control} />
+        <InputText
+          label="Password"
+          name="password"
+          type="password"
+          control={control}
+        />
         <InputText type="email" label="Email" name="email" control={control} />
         <InputDate name="birthdate" label="Birthdate" control={control} />
         <InputUpload name="documents" label="Documents" control={control} />
@@ -186,12 +195,7 @@ const ExampleForm: ForwardRefRenderFunction<ExampleFormRef, Props> = (
           control={control}
         />
       </Stack>
-      <Button
-        mt={2}
-        colorScheme="twitter"
-        isLoading={isSubmitting}
-        type="submit"
-      >
+      <Button mt={2} colorScheme="brand" isLoading={isSubmitting} type="submit">
         Submit
       </Button>
     </form>
