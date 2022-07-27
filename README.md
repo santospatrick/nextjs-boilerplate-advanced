@@ -7,6 +7,8 @@
 ![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white)
 
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=125ecf6a44b8&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+
 - [Live Demo](https://sample-nextjs-app.santospatrick.com)
 - [Storybook Demo](https://main--62e089a345749171c6216585.chromatic.com)
 
@@ -32,6 +34,20 @@ yarn dev # start development server
 ```
 
 4. Done 🎉
+
+## Deployment
+
+- Run the following commands:
+```bash
+yarn build # this command will fail if there is any Typescript or Lint errors
+yarn start
+```
+
+- Or, deploy on [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/) (don't forget about environment variables):
+
+| Netlify | Vercel |
+|---------|--------|
+| [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/santospatrick/nextjs-boilerplate-advanced) | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/santospatrick/nextjs-boilerplate-advanced) |
 
 ## Instructions
 > How to get the most out of this boilerplate 🚀
