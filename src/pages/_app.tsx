@@ -1,5 +1,4 @@
 import { ReactElement, ReactNode, useState } from "react";
-import "@/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "@/config/theme";
 import { DefaultSeo } from "next-seo";
@@ -13,6 +12,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import { Global } from "@emotion/react";
+import globals from "@/styles/globals";
 
 export type NextPageWithLayout<Type = any> = NextPage<Type> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <Global styles={globals} />
       <DefaultSeo {...SEO} />
       <ToastContainer autoClose={3000} />
       <AuthProvider>

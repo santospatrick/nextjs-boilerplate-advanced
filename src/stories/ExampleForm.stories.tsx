@@ -7,6 +7,8 @@ import api, { httpErrorHandler } from "@/services/api";
 import { useRef } from "react";
 import { ExampleFormRef } from "@/examples/ExampleForm/ExampleForm";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { Global } from "@emotion/react";
+import globals from "@/styles/globals";
 
 export const FormWorkingCorrectly = () => {
   const formRef = useRef<ExampleFormRef>(null);
@@ -66,6 +68,7 @@ const config = {
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
+        <Global styles={globals} />
         <Story />
       </QueryClientProvider>
     ),
