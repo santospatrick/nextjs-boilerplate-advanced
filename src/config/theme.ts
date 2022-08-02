@@ -5,7 +5,7 @@ export const override = {
   colors: {
     brand: {
       50: "#e7f6fd", // hover
-      500: "#478ad2", // button background color
+      500: "#478ad2", // button background color, menu link color
       600: "#2a69ac", // active
     },
   },
