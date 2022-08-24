@@ -111,3 +111,5 @@ In order to see storybook, run development server with following command:
 yarn install # if you didn't yet :)
 yarn storybook # start server at http://localhost:6006
 ```
+
+### Contributors
