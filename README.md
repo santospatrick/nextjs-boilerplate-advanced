@@ -8,6 +8,7 @@
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white)
 
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=125ecf6a44b8&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=santospatrick_nextjs-boilerplate-advanced)
 
 - [Live Demo](https://sample-nextjs-app.santospatrick.com)
 - [Storybook Demo](https://main--62e089a345749171c6216585.chromatic.com)
