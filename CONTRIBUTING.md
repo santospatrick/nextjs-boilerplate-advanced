@@ -14,6 +14,7 @@ You should have experience in:
 - Developing applications in React including component design and state management
 - Basic front end JavaScript/TypeScript experience
 - General understanding of CI/CD pipelines (we use [Netlify](https://app.netlify.com/sites/sample-nextjs-app/deploys))
+- Ensure compatibility of code across devices and viewport sizes
 
 ## Developing
 
