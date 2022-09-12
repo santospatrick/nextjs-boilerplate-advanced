@@ -47,7 +47,7 @@ const StandardTable = ({
       api
         .get(endpoint, {
           params: {
-            nome: searchTerm,
+            q: searchTerm,
             page,
             perPage,
             order: "created_at",
