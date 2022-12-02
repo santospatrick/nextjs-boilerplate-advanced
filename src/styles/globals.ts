@@ -1,4 +1,6 @@
 import { css } from "@emotion/react";
+import "@fontsource/work-sans";
+import "@fontsource/inter";
 
 export default css`
   html,

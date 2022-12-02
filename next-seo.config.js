@@ -1,7 +1,7 @@
 const defaultSeo = {
-  title: "Next.js Boilerplate Advanced",
+  title: "CodeGen",
   description:
-    "Welcome to this awesome boilerplate! I hope it helps you somehow s2",
+    "CodeGen is a code generator that turns OpenAPI specs into API clients, server stubs, and more.",
   openGraph: {
     type: "website",
     locale: "en_IE",

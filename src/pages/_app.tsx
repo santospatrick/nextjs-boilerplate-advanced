@@ -6,7 +6,6 @@ import SEO from "../../next-seo.config";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { AuthProvider } from "@/contexts/AuthContext";
 import NProgress from "next-nprogress/component";
 import { ReactQueryDevtools } from "react-query/devtools";
 import type { NextPage } from "next";
@@ -32,24 +31,19 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Global styles={globals} />
       <DefaultSeo {...SEO} />
       <ToastContainer autoClose={3000} />
-      <AuthProvider>
-        <ChakraProvider theme={theme}>
-          <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-              {getLayout(<Component {...pageProps} />)}
-              <NProgress
-                color={"black"}
-                options={{ easing: "ease", speed: 500 }}
-                spinner={true}
-              />
-              <ReactQueryDevtools
-                position="bottom-right"
-                initialIsOpen={false}
-              />
-            </Hydrate>
-          </QueryClientProvider>
-        </ChakraProvider>
-      </AuthProvider>
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            {getLayout(<Component {...pageProps} />)}
+            <NProgress
+              color={"black"}
+              options={{ easing: "ease", speed: 500 }}
+              spinner={true}
+            />
+            <ReactQueryDevtools position="bottom-right" initialIsOpen={false} />
+          </Hydrate>
+        </QueryClientProvider>
+      </ChakraProvider>
     </>
   );
 }
