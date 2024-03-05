@@ -24,7 +24,7 @@ import { useTable } from "react-table";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Container } from "./styles";
 
-type Pagination = {
+export type Pagination = {
   total: number;
   perPage: number;
   page: number;
@@ -85,6 +85,8 @@ function DataTable({
         background="gray.200"
         color="gray.600"
         fontSize="sm"
+        borderRadius="var(--chakra-radii-md)"
+        borderBottomRadius={0}
       >
         <HStack width="100%">
           <InputGroup>
@@ -186,6 +188,8 @@ function DataTable({
         background="gray.200"
         color="gray.600"
         fontSize="sm"
+        borderRadius="var(--chakra-radii-md)"
+        borderTopRadius={0}
       >
         <p>
           {page} - {totalPages} of {pagination.total}
@@ -200,8 +204,6 @@ function DataTable({
             aria-label="Go to previous page"
             icon={<ChevronLeftIcon />}
             disabled={page === 1}
-            colorScheme="brand"
-            variant="outline"
           />
           <IconButton
             aria-label="Go to next page"
@@ -211,8 +213,6 @@ function DataTable({
             }}
             icon={<ChevronRightIcon />}
             disabled={page === pagination.lastPage}
-            colorScheme="brand"
-            variant="outline"
           />
         </Stack>
       </Box>
