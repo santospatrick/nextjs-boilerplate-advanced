@@ -63,13 +63,13 @@ yarn start
 yarn emails
 ```
 
-- The generated `.html` files will be located in `./emails/dist/`
+The generated `.html` files will be located in `./emails/dist/`
 - You can also watch for MJML file changes in your `./emails/templates` folder by running:
 ```
 yarn emails:watch
 ```
 
-- Any change in the `.mjml` files will generate new `.html` template files.
+Any change in the `.mjml` files will generate new `.html` template files.
 
 ## Features
 
