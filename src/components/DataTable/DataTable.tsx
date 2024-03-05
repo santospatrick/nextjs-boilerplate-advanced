@@ -24,7 +24,7 @@ import { useTable } from "react-table";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Container } from "./styles";
 
-type Pagination = {
+export type Pagination = {
   total: number;
   perPage: number;
   page: number;
