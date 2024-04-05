@@ -1,10 +1,12 @@
 import { Box, IconButton, Stack } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { ReactNode, useCallback, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import logo from "@/assets/logo.svg";
 import { MdMenu } from "react-icons/md";
 import MainDrawer from "@/components/MainDrawer";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
 
 type Props = {
   children: ReactNode;
@@ -60,4 +62,27 @@ function PrivatePage({ children, title = "" }: Props) {
   );
 }
 
-export default PrivatePage;
+const withAuth = (Component: typeof PrivatePage) => {
+  const AuthenticatedComponent = (props: Props) => {
+    const router = useRouter();
+    const { user, isLoading } = useAuth();
+    const [renderPage, setRenderPage] = useState(false);
+
+    useEffect(() => {
+      if (isLoading) return;
+
+      if (!user?.id) {
+        router.replace("/login");
+        return;
+      }
+
+      setRenderPage(true);
+    }, [router, user, isLoading]);
+
+    return renderPage ? <Component {...props} /> : null;
+  };
+
+  return AuthenticatedComponent;
+};
+
+export default withAuth(PrivatePage);
