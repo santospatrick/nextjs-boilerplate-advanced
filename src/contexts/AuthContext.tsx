@@ -5,6 +5,7 @@ import Router from "next/router";
 
 type AuthContextType = {
   isAuthenticated: boolean;
+  isLoading: boolean;
   user: User | null;
   signIn: (data: SigninValues) => Promise<void>;
   logout: () => void;
@@ -33,15 +34,20 @@ type User = {
 
 export function AuthProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const isAuthenticated = !!user;
 
   useEffect(() => {
     const { "nextjs-boilerplate-advanced.token": token } = parseCookies();
-    if (token) {
-      api.get("me").then(({ data }) => {
-        setUser(data);
-      });
+
+    if (!token) {
+      return setIsLoading(false);
     }
+
+    api.get("me").then(({ data }) => {
+      setUser(data);
+      setIsLoading(false);
+    });
   }, []);
 
   async function signIn(values: SigninValues) {
@@ -66,7 +72,9 @@ export function AuthProvider({ children }: Props) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signIn, logout, user }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, signIn, logout, user, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
