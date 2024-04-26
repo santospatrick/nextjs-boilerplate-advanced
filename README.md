@@ -56,6 +56,21 @@ yarn start
 
 [![Slides.com template presentation](docs/slides.png)](https://slides.com/santospatrick/nextjs-chakraui-typescript)
 
+## MJML usage
+
+- You can generate your e-mail templates from MJML by running the following command:
+```
+yarn emails
+```
+
+The generated `.html` files will be located in `./emails/dist/`
+- You can also watch for MJML file changes in your `./emails/templates` folder by running:
+```
+yarn emails:watch
+```
+
+Any change in the `.mjml` files will generate new `.html` template files.
+
 ## Features
 
 ### `v1`
